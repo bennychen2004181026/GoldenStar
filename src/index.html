@@ -14,7 +14,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./scss/main.css" />
     <title>Golden Star Yum Cha</title>
   </head>
   <body>
@@ -46,28 +46,40 @@
       </section>
 
       <!-- Featured Dishes Section -->
-      <section id="featured-dishes" class="feature">
-        <h2 class="feature-title">Featured Dishes</h2>
-        <div class="dish-item">
-          <img
-            src="./assets/images/wonton.jpg"
-            alt="Dish 1"
-            class="dish-image"
-          />
-          <h3 class="dish-title">Dish 1</h3>
+      <section id="featured-dishes">
+        <h2 class="section-heading">Featured Dishes</h2>
+        <div class="dishes-wrapper">
+          <div class="dish-card">
+            <img
+              src="./assets/images/wonton.webp"
+              alt="wonton"
+              class="dish-image"
+            />
+            <h3>Wonton Soup</h3>
+            <p>Delicious dish description.</p>
+          </div>
+
+          <div class="dish-card">
+            <img
+              src="./assets/images/spring_roll.webp"
+              alt="spring_roll"
+              class="dish-image"
+            />
+            <h3>Spring Roll</h3>
+            <p>Delicious dish description.</p>
+          </div>
+          <div class="dish-card">
+            <img
+              src="./assets/images/dimsum.webp"
+              alt="dimsum"
+              class="dish-image"
+            />
+            <h3>Dim Sum</h3>
+            <p>Delicious dish description.</p>
+          </div>
         </div>
-        <div class="dish-item">
-          <img
-            src="./assets/images/wonton2.jpg"
-            alt="Dish 2"
-            class="dish-image"
-          />
-          <h3 class="dish-title">Dish 2</h3>
-        </div>
-        <!-- Add more dishes -->
       </section>
     </main>
-
     <!-- Footer -->
     <footer id="footer">
       <div class="container">
@@ -79,6 +91,6 @@
         <p>&copy; 2023 Yum Cha Restaurant. All Rights Reserved.</p>
       </div>
     </footer>
-    <script async src="../assets/js/main.js"></script>
+    <script async src="./js/main.js"></script>
   </body>
 </html>

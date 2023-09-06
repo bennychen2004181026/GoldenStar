@@ -1,0 +1,17 @@
+#featured-dishes {
+    .section-heading {
+      font-size: 2rem;
+      text-align: center;
+    }
+    .dishes-wrapper {
+      display: flex;
+      justify-content: space-around;
+    }
+    .dish-card {
+      width: 200px;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }

@@ -1,0 +1,33 @@
+.site-header {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+  
+    .main-nav {
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+  
+      .nav-list {
+        list-style: none;
+        display: flex;
+  
+        li {
+          margin-left: 1rem;
+  
+          a {
+            text-decoration: none;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+  

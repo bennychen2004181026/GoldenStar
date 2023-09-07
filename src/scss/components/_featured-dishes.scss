@@ -1,23 +1,70 @@
 #featured-dishes {
   .section-heading {
-    font-size: 2rem;
     text-align: center;
+    font-size: 2em;
   }
-  .dishes-wrapper {
-    display: flex;
-    justify-content: space-around;
-  }
-  .dish-card {
-    width: 200px;
-    img {
-      width: 100%;
-      height: auto;
+  .carousel {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    .carousel-slides {
+      display: flex;
+      transition: transform 1s ease-in-out;
     }
-
-    transition: transform 0.3s ease-in-out;
-
-    &:hover {
-      transform: scale(1.1);
+    .carousel-slide {
+      position: relative;
+      min-width: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      &.active {
+        opacity: 1;
+      }
+      img {
+        width: 100%;
+      }
+      .carousel-caption {
+        position: absolute;
+        bottom: 50px; // Create some space for the indicators below
+        left: 10px;
+        text-align: center; // Center align text
+        width: 100%; // Take full width
+      }
+    }
+    .carousel-button {
+      position: absolute;
+      background: none;
+      border: none;
+      font-size: 6.5em; // Increased size for easier clicking
+      color: #dcccdf;
+      cursor: pointer;
+      z-index: 2; // Makes sure the buttons are clickable
+    }
+    #prev {
+      left: 10px; // Adjusted from edge
+    }
+    #next {
+      right: 10px; // Adjusted from edge
+    }
+    .carousel-indicators {
+      position: absolute;
+      z-index: 2; // Makes sure the buttons are clickable
+      left: 35%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center; // Center align indicators
+      width: 100%; // Take full width
+      .carousel-indicator {
+        display: inline-block;
+        width: 30px; // Made buttons bigger
+        height: 30px; // Made buttons bigger
+        background: gray;
+        margin: 0 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        &.active {
+          background: white;
+        }
+      }
     }
   }
 }

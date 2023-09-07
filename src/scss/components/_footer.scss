@@ -1,25 +1,36 @@
 #footer {
-    background-color: #333;
-    color: white;
-    padding: 2em 0;
-    
-    .social-icons i {
-      margin: 10px;
+  background-color: #333;
+  color: white;
+  padding: 2em 0;
+
+  .social-icons i {
+    margin: 10px;
+    color: #fff;
+    cursor: pointer;
+    a {
+      margin-right: 0.5rem;
       color: #fff;
-      cursor: pointer;
+      font-size: 1.2rem;
     }
-    
-    .secondary-nav {
-      ul {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-  
-        li {
-          margin: 0 15px;
-        }
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .secondary-nav {
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      li {
+        margin: 0 15px;
       }
     }
   }
-  
+  p {
+    margin: 0;
+  }
+}

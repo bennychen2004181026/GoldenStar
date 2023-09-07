@@ -1,0 +1,1 @@
+#featured-dishes .section-heading{font-size:2rem;text-align:center}#featured-dishes .dishes-wrapper{display:flex;justify-content:space-around}#featured-dishes .dish-card{width:200px;transition:transform .3s ease-in-out}#featured-dishes .dish-card img{width:100%;height:auto}#featured-dishes .dish-card:hover{transform:scale(1.1)}

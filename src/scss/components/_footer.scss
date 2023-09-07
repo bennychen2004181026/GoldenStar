@@ -1,20 +1,22 @@
+// src/scss/components/_footer.scss
+
 #footer {
     background-color: #333;
     color: white;
-    padding: 1.5em 0;
+    padding: 2em 0;
   
     .container {
       display: flex;
       justify-content: space-between;
+      align-items: center;
   
-      .social-icons {
-        a {
-          color: white;
-          margin-right: 10px;
-        }
+      .social-icons a {
+        margin-right: 0.5rem;
+        color: #fff;
+        font-size: 1.2rem;
       }
   
-      .footer-nav {
+      .secondary-nav {
         ul {
           list-style: none;
           display: flex;
@@ -26,10 +28,9 @@
           }
         }
       }
-  
-      p {
-        margin: 0;
-      }
+    }
+    p {
+      margin: 0;
     }
   }
   

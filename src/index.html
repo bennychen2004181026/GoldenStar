@@ -144,11 +144,21 @@
         </div>
       </section>
 
-      <!-- Contact section -->
+      <!-- Contact Section -->
       <section id="contact">
-        <h2 class="section-heading">Contact Us</h2>
-        <p>Email: info@yumcha.com</p>
-        <p>Phone: +1 (123) 456-7890</p>
+        <div class="container">
+          <h2>Contact Us</h2>
+          <p>
+            Got a question? We'd love to hear from you. Send us a message and
+            we'll respond as soon as possible.
+          </p>
+          <form action="/submit-form" method="POST">
+            <input type="text" name="name" placeholder="Your Name" />
+            <input type="email" name="email" placeholder="Your Email" />
+            <textarea name="message" placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
       </section>
     </main>
 

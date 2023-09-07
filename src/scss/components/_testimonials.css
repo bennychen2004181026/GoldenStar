@@ -1,1 +1,1 @@
-#testimonials{background-color:#f4f4f4;padding:2em 0;text-align:center}#testimonials .testimonial-card{margin:20px;padding:20px;border:1px solid #ccc}
+#testimonials{background-color:#f9f9f9;padding:2em 0}#testimonials .testimonial-wrapper{display:flex;justify-content:space-between}#testimonials .testimonial-wrapper .testimonial{width:45%}#testimonials .testimonial-wrapper .testimonial p{font-size:1.1em}#testimonials .testimonial-wrapper .testimonial small{display:block;text-align:right;margin-top:10px;font-style:italic}

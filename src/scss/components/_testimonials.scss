@@ -1,12 +1,22 @@
 #testimonials {
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     padding: 2em 0;
-    text-align: center;
   
-    .testimonial-card {
-      margin: 20px;
-      padding: 20px;
-      border: 1px solid #ccc;
+    .testimonial-wrapper {
+      display: flex;
+      justify-content: space-between;
+  
+      .testimonial { /* updated class name */
+        width: 45%; /* Adjust as needed */
+        p {
+          font-size: 1.1em;
+        }
+        small {
+          display: block;
+          text-align: right;
+          margin-top: 10px;
+          font-style: italic;
+        }
+      }
     }
   }
-  

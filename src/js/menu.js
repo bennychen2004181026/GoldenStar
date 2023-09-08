@@ -180,4 +180,6 @@ document.addEventListener("DOMContentLoaded", function () {
       addToCart.style.zIndex = "2";
     });
   });
+// Add event listener for closing cart side bar
+  document.getElementById("closeCartBtn").addEventListener("click", closeCart);
 });

@@ -23,20 +23,104 @@
       </nav>
     </header>
 
-     <!-- Breadcrumb components -->
-     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">About Us</li>
-        </ol>
-      </nav>
+    <!-- Breadcrumb components -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">About Us</li>
+      </ol>
+    </nav>
 
     <section id="menu">
-        <div class="container">
-          <h1>Menu</h1>
-          <!-- Starters, Entree, and Specials sections here -->
+      <div class="container">
+        <h1>Menu</h1>
+        <ul class="menu-tabs">
+          <li class="active"><a href="#starters">Starters</a></li>
+          <li><a href="#mains">Main Courses</a></li>
+          <li><a href="#desserts">Desserts</a></li>
+          <!-- More categories can be added here -->
+        </ul>
+
+        <div class="menu-content">
+          <div id="starters" class="tab-content active">
+            <div class="dish-gallery">
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+            </div>
+          </div>
+          <div id="mains" class="tab-content">
+            <div class="dish-gallery">
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+            </div>
+          </div>
+          <div id="desserts" class="tab-content">
+            <div class="dish-gallery">
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+              <picture>
+                <source
+                  srcset="./assets/images/seafood.webp"
+                  type="image/webp"
+                />
+                <img src="./assets/images/seafood.jpg" alt="Dish 1" />
+              </picture>
+            </div>
+          </div>
+          <!-- More categories can be added here -->
         </div>
-      </section>
+      </div>
+    </section>
 
     <!-- Footer Section -->
     <footer id="footer">

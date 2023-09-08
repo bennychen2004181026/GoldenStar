@@ -22,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Open and close cart logic
   function openCart() {
+    console.log("Inside openCart function");
     document.getElementById("cartSidebar").style.right = "0";
+    console.log(document.getElementById("cartSidebar").style.right);
   }
 
   function closeCart() {
@@ -33,30 +35,36 @@ document.addEventListener("DOMContentLoaded", function () {
   let cart = [];
   let total = 0;
 
-  function addToCart(dish, price, action) {
+  function addToCart(dish, price, action, updateUI = false) {
+    console.log("Inside addToCart function");
+    console.log("Initial Cart:", cart);
+    console.log("Initial Total:", total);
     let itemIndex = cart.findIndex((item) => item.dish === dish);
-  
+
+    // Check and initialize if item doesn't exist in the cart yet
+    if (itemIndex < 0) {
+      cart.push({ dish, price: 0, quantity: 0 });
+      itemIndex = cart.length - 1;
+    }
+
     if (action === "add") {
-      if (itemIndex >= 0) {
-        cart[itemIndex].quantity++;
-        cart[itemIndex].price += price;
-      } else {
-        cart.push({ dish, price, quantity: 1 });
-      }
+      cart[itemIndex].quantity++;
+      cart[itemIndex].price += price;
       total += price;
       showToast("Added to cart");
     } else if (action === "remove" && itemIndex >= 0) {
       if (cart[itemIndex].quantity > 1) {
         cart[itemIndex].quantity--;
         cart[itemIndex].price -= price;
-      } else {
-        cart.splice(itemIndex, 1);
+        total -= price;
+        showToast("Removed from cart");
       }
-      total -= price;
-      showToast("Removed from cart");
     }
-  
-    updateCart();
+
+    // Inside 'addToCart' function
+    if (updateUI) {
+      updateCart();
+    }
   }
 
   // Attach addToCart for initial Add to Cart click
@@ -74,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Modify updateCart to include quantity
   function updateCart() {
+    console.log("Inside updateCart function");
     let cartItemsDiv = document.querySelector(".cart-items");
     cartItemsDiv.innerHTML = "";
 
@@ -83,6 +92,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }">${item.dish} x<span class="cart-item-quantity">${
         item.quantity
       }</span> - $${item.price.toFixed(2)}</div>`;
+    });
+
+    // Update the quantity inputs based on cart data
+    cart.forEach((item) => {
+      const input = document.querySelector(`input[data-dish="${item.dish}"]`);
+      if (input) {
+        input.value = item.quantity;
+      }
     });
 
     document.getElementById("cartTotal").innerText = total.toFixed(2);
@@ -107,9 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      addToCart(this.getAttribute("data-dish"), 12, "add"); // Here 12 is the price
+      console.log("Add to Cart clicked");
+      addToCart(this.getAttribute("data-dish"), 12, "add", true); // Added true
     });
-  });
+  });  
 
   // Attach event listeners for quantity control buttons
   const incrementButtons = document.querySelectorAll(".increment");
@@ -117,43 +135,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   incrementButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const input = this.parentNode.querySelector(".quantity");
-      console.log("Increment button clicked");
-      console.log(input);
-      input.value = parseInt(input.value, 10) + 1;
-      console.log(input);
       const dish = this.closest(".dish-item")
         .querySelector(".add-to-cart")
         .getAttribute("data-dish");
-      const cartItemQuantity = document.querySelector(
-        `.cart-item[data-dish="${dish}"] .cart-item-quantity`
-      );
-
-      if (cartItemQuantity) {
-        cartItemQuantity.textContent =
-          parseInt(cartItemQuantity.textContent, 10) + 1;
-      }
+      addToCart(dish, 12, "add", true); // Here 12 is the price, and 'true' is to update the UI
     });
   });
 
   decrementButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const input = this.parentNode.querySelector(".quantity");
-      const currentVal = parseInt(input.value, 10);
-  
-      if (currentVal > 1) {
-        input.value = currentVal - 1;
-      }
-  
       const dish = this.closest(".dish-item")
         .querySelector(".add-to-cart")
         .getAttribute("data-dish");
-  
-      // Call the addToCart function with the "remove" action
-      addToCart(dish, 12, "remove");  // Here 12 is the price
+      addToCart(dish, 12, "remove", true); // Here 12 is the price, and 'true' is to update the UI
     });
   });
-  
 
   // New Code: To fix the overlay issue
   const quantityControls = document.querySelectorAll(".quantity-control");

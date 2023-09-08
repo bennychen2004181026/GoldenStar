@@ -106,7 +106,7 @@
                   />
                   <img src="./assets/images/wonton.jpg" alt="Dish 1" />
                 </picture>
-                <div class="add-to-cart" data-dish="seafood">Add to Cart</div>
+                <div class="add-to-cart" data-dish="wonton">Add to Cart</div>
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@
                   />
                   <img src="./assets/images/dimsum.webp" alt="Dish 1" />
                 </picture>
-                <div class="add-to-cart" data-dish="seafood">Add to Cart</div>
+                <div class="add-to-cart" data-dish="dimsum">Add to Cart</div>
               </div>
               <div class="dish-item">
                 <picture>
@@ -148,6 +148,15 @@
         </div>
       </div>
     </section>
+<!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+      <a href="javascript:void(0)" class="close-cart" onclick="closeCart()">&times;</a>
+      <h2>Your Cart</h2>
+      <div class="cart-items"></div>
+      <div class="cart-total">
+        <strong>Total:</strong> $<span id="cartTotal">0.00</span>
+      </div>
+    </div>
 
     <!-- Footer Section -->
     <footer id="footer">

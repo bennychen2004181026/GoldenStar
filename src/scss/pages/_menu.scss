@@ -56,8 +56,9 @@
   position: relative;
   margin: 15px;
   overflow: hidden;
-  
-  picture, img {
+
+  picture,
+  img {
     width: 100%;
     height: auto;
   }
@@ -76,10 +77,44 @@
     color: white;
     font-size: 1.2em;
     text-align: center;
-    line-height: 200px; // You can adjust this value to vertically center the text
+    line-height: 30%;
     opacity: 0;
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
   }
 }
 
+.cart-sidebar {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 400px;
+  height: 100%;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  color: white;
+
+  h2 {
+    padding: 20px;
+    background-color: #333;
+    margin: 0;
+  }
+
+  .close-cart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .cart-items {
+    padding: 20px;
+  }
+
+  .cart-total {
+    padding: 20px;
+    border-top: 1px solid #444;
+  }
+}

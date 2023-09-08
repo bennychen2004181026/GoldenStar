@@ -60,19 +60,19 @@ document.addEventListener("DOMContentLoaded", function () {
         showToast("Removed from cart");
       }
     }
-// filter out items with zero quantity before updating the UI.
+    // filter out items with zero quantity before updating the UI.
     if (action === "remove" && itemIndex >= 0) {
-        if (cart[itemIndex].quantity > 1) {
-          cart[itemIndex].quantity--;
-          cart[itemIndex].price -= price;
-          total -= price;
-          showToast("Removed from cart");
-        } else if (cart[itemIndex].quantity === 1) {
-          cart.splice(itemIndex, 1);
-          total -= price;
-          showToast("Item removed from cart");
-        }
+      if (cart[itemIndex].quantity > 1) {
+        cart[itemIndex].quantity--;
+        cart[itemIndex].price -= price;
+        total -= price;
+        showToast("Removed from cart");
+      } else if (cart[itemIndex].quantity === 1) {
+        cart.splice(itemIndex, 1);
+        total -= price;
+        showToast("Item removed from cart");
       }
+    }
 
     // Inside 'addToCart' function
     if (updateUI) {
@@ -98,18 +98,13 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Inside updateCart function");
     let cartItemsDiv = document.querySelector(".cart-items");
     cartItemsDiv.innerHTML = "";
+
     // Filter out items with zero quantity
-    const filteredCart = cart.filter(item => item.quantity > 0);
+    const filteredCart = cart.filter((item) => item.quantity > 0);
 
+    // Update: Removed the duplicated forEach loop for cart
+    // Loop only on filteredCart instead of cart
     filteredCart.forEach((item, index) => {
-      cartItemsDiv.innerHTML += `<div class="cart-item" data-dish="${
-        item.dish
-      }">${item.dish} x<span class="cart-item-quantity">${
-        item.quantity
-      }</span> - $${item.price.toFixed(2)}</div>`;
-    });
-
-    cart.forEach((item, index) => {
       cartItemsDiv.innerHTML += `<div class="cart-item" data-dish="${
         item.dish
       }">${item.dish} x<span class="cart-item-quantity">${
@@ -150,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Add to Cart clicked");
       addToCart(this.getAttribute("data-dish"), 12, "add", true); // Added true
     });
-  });  
+  });
 
   // Attach event listeners for quantity control buttons
   const incrementButtons = document.querySelectorAll(".increment");

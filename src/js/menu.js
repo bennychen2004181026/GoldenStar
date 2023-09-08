@@ -37,6 +37,7 @@ function addToCart(dish, price) {
   cart.push({ dish, price });
   total += price;
   updateCart();
+  showToast();
 }
 
 function updateCart() {
@@ -60,4 +61,18 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
+
+  function showToast() {
+    const toast = document.getElementById("toast");
+    toast.classList.remove("toast-hidden");
+    toast.classList.add("toast-visible");
+  
+    setTimeout(() => {
+      toast.classList.remove("toast-visible");
+      toast.classList.add("toast-hidden");
+    }, 3000);
+  }
+  // After successfully adding to cart, show toast
+  showToast();
+  
   

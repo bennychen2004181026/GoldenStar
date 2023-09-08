@@ -70,9 +70,8 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => {
       toast.classList.remove("toast-visible");
       toast.classList.add("toast-hidden");
-    }, 3000);
+    }, 500);
   }
-  // After successfully adding to cart, show toast
-  showToast();
+
   
   

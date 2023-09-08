@@ -87,6 +87,9 @@
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
     z-index: 2; // Now controlled by JavaScript
+    margin-bottom: 20px; // Add margin to bottom
+    border: 1px solid rgba(255, 255, 255, 0.2); // Add border
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Add shadow
   }
 
   .quantity-control {
@@ -95,16 +98,38 @@
     display: flex;
     align-items: center;
     z-index: 1; // Lower than add-to-cart
+    margin-top: 20px; // Add margin to top
+    padding: 10px; // Add padding
+    border: 1px solid rgba(0, 0, 0, 0.2); // Add border
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.1
+    ); // Add a different background color
 
     button {
       cursor: pointer;
-      padding: 4px 8px;
+      padding: 12px 16px; // Increased padding
+      font-size: 1.2em; // Increased font size
+      width: auto; // Auto width based on content size
+      height: auto; // Auto height based on content size
     }
 
     input[type="number"] {
-      width: 50px;
+      width: 70px; // Increased width
+      height: 40px; // Increased height
+      font-size: 1.2em; // Increased font size
       text-align: center;
-      margin: 0 4px;
+      margin: 0 8px; // Increased margin
+    }
+    // Add hover and active states for better UX
+    button:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    button:active {
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
 }

@@ -60,6 +60,19 @@ document.addEventListener("DOMContentLoaded", function () {
         showToast("Removed from cart");
       }
     }
+// filter out items with zero quantity before updating the UI.
+    if (action === "remove" && itemIndex >= 0) {
+        if (cart[itemIndex].quantity > 1) {
+          cart[itemIndex].quantity--;
+          cart[itemIndex].price -= price;
+          total -= price;
+          showToast("Removed from cart");
+        } else if (cart[itemIndex].quantity === 1) {
+          cart.splice(itemIndex, 1);
+          total -= price;
+          showToast("Item removed from cart");
+        }
+      }
 
     // Inside 'addToCart' function
     if (updateUI) {
@@ -80,11 +93,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Modify updateCart to include quantity
+  // Modify updateCart to filter out items with 0 quantity
   function updateCart() {
     console.log("Inside updateCart function");
     let cartItemsDiv = document.querySelector(".cart-items");
     cartItemsDiv.innerHTML = "";
+    // Filter out items with zero quantity
+    const filteredCart = cart.filter(item => item.quantity > 0);
+
+    filteredCart.forEach((item, index) => {
+      cartItemsDiv.innerHTML += `<div class="cart-item" data-dish="${
+        item.dish
+      }">${item.dish} x<span class="cart-item-quantity">${
+        item.quantity
+      }</span> - $${item.price.toFixed(2)}</div>`;
+    });
 
     cart.forEach((item, index) => {
       cartItemsDiv.innerHTML += `<div class="cart-item" data-dish="${

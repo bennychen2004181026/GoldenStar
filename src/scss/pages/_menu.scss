@@ -86,7 +86,7 @@
     opacity: 1; // Visible by default
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
-    z-index: 1; // Higher than quantity-control
+    z-index: 2; // Now controlled by JavaScript
   }
 
   .quantity-control {
@@ -94,7 +94,7 @@
     bottom: 10px; // At the bottom
     display: flex;
     align-items: center;
-    z-index: 0; // Lower than add-to-cart
+    z-index: 1; // Lower than add-to-cart
 
     button {
       cursor: pointer;

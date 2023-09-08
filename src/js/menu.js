@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addToCart(dish, price, action) {
     let itemIndex = cart.findIndex((item) => item.dish === dish);
-
+  
     if (action === "add") {
       if (itemIndex >= 0) {
         cart[itemIndex].quantity++;
@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
         cart.push({ dish, price, quantity: 1 });
       }
       total += price;
-      console.log(total);
       showToast("Added to cart");
     } else if (action === "remove" && itemIndex >= 0) {
       if (cart[itemIndex].quantity > 1) {
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       total -= price;
       showToast("Removed from cart");
     }
-
+  
     updateCart();
   }
 
@@ -140,28 +139,21 @@ document.addEventListener("DOMContentLoaded", function () {
   decrementButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const input = this.parentNode.querySelector(".quantity");
-      console.log("Decrement button clicked");
-      console.log(input);
       const currentVal = parseInt(input.value, 10);
-      console.log(input);
-
+  
       if (currentVal > 1) {
         input.value = currentVal - 1;
       }
-
+  
       const dish = this.closest(".dish-item")
         .querySelector(".add-to-cart")
         .getAttribute("data-dish");
-      const cartItemQuantity = document.querySelector(
-        `.cart-item[data-dish="${dish}"] .cart-item-quantity`
-      );
-
-      if (cartItemQuantity && parseInt(cartItemQuantity.textContent, 10) > 1) {
-        cartItemQuantity.textContent =
-          parseInt(cartItemQuantity.textContent, 10) - 1;
-      }
+  
+      // Call the addToCart function with the "remove" action
+      addToCart(dish, 12, "remove");  // Here 12 is the price
     });
   });
+  
 
   // New Code: To fix the overlay issue
   const quantityControls = document.querySelectorAll(".quantity-control");

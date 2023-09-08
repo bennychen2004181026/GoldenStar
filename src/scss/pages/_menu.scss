@@ -116,13 +116,6 @@
       height: auto; // Auto height based on content size
     }
 
-    input[type="number"] {
-      width: 70px; // Increased width
-      height: 40px; // Increased height
-      font-size: 1.2em; // Increased font size
-      text-align: center;
-      margin: 0 8px; // Increased margin
-    }
     // Add hover and active states for better UX
     button:hover {
       background-color: rgba(0, 0, 0, 0.1);

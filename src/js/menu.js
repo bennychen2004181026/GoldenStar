@@ -73,5 +73,27 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 500);
   }
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const incrementButtons = document.querySelectorAll(".increment");
+    const decrementButtons = document.querySelectorAll(".decrement");
+    
+    incrementButtons.forEach((button) => {
+      button.addEventListener("click", function() {
+        const input = this.parentNode.querySelector(".quantity");
+        input.value = parseInt(input.value, 10) + 1;
+      });
+    });
+  
+    decrementButtons.forEach((button) => {
+      button.addEventListener("click", function() {
+        const input = this.parentNode.querySelector(".quantity");
+        if (parseInt(input.value, 10) > 1) {
+          input.value = parseInt(input.value, 10) - 1;
+        }
+      });
+    });
+  });
+  
+
   
   

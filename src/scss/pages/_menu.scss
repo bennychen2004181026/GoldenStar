@@ -57,6 +57,10 @@
   position: relative;
   margin: 15px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   picture,
   img {
@@ -65,7 +69,7 @@
   }
 
   &:hover .add-to-cart {
-    opacity: 1;
+    opacity: 0; // Hide the add-to-cart overlay when hovering
   }
 
   .add-to-cart {
@@ -79,9 +83,29 @@
     font-size: 2.6em;
     text-align: center;
     line-height: 800%;
-    opacity: 0;
+    opacity: 1; // Visible by default
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
+    z-index: 1; // Higher than quantity-control
+  }
+
+  .quantity-control {
+    position: absolute; // Absolutely position this too
+    bottom: 10px; // At the bottom
+    display: flex;
+    align-items: center;
+    z-index: 0; // Lower than add-to-cart
+
+    button {
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    input[type="number"] {
+      width: 50px;
+      text-align: center;
+      margin: 0 4px;
+    }
   }
 }
 
@@ -123,7 +147,7 @@
 // Toast Styles
 #toast {
   position: fixed;
-  top: 10%; 
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #333;

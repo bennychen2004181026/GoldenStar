@@ -39,39 +39,32 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Inside addToCart function");
     console.log("Initial Cart:", cart);
     console.log("Initial Total:", total);
+
     let itemIndex = cart.findIndex((item) => item.dish === dish);
 
-    // Check and initialize if item doesn't exist in the cart yet
-    if (itemIndex < 0) {
-      cart.push({ dish, price: 0, quantity: 0 });
-      itemIndex = cart.length - 1;
+    // Initialize the item if it doesn't exist in the cart yet
+    if (itemIndex === -1) {
+        cart.push({ dish, price: 0, quantity: 0 });
+        itemIndex = cart.length - 1;
     }
 
+    // Now you can safely access cart[itemIndex]
     if (action === "add") {
-      cart[itemIndex].quantity++;
-      cart[itemIndex].price += price;
-      total += price;
-      showToast("Added to cart");
+        cart[itemIndex].quantity++;
+        cart[itemIndex].price += price;
+        total += price;
+        showToast("Added to cart");
     } else if (action === "remove" && itemIndex >= 0) {
-      if (cart[itemIndex].quantity > 1) {
-        cart[itemIndex].quantity--;
-        cart[itemIndex].price -= price;
-        total -= price;
-        showToast("Removed from cart");
-      }
-    }
-    // filter out items with zero quantity before updating the UI.
-    if (action === "remove" && itemIndex >= 0) {
-      if (cart[itemIndex].quantity > 1) {
-        cart[itemIndex].quantity--;
-        cart[itemIndex].price -= price;
-        total -= price;
-        showToast("Removed from cart");
-      } else if (cart[itemIndex].quantity === 1) {
-        cart.splice(itemIndex, 1);
-        total -= price;
-        showToast("Item removed from cart");
-      }
+        if (cart[itemIndex].quantity > 1) {
+            cart[itemIndex].quantity--;
+            cart[itemIndex].price -= price;
+            total -= price;
+            showToast("Removed from cart");
+        } else if (cart[itemIndex].quantity === 1) {
+            cart.splice(itemIndex, 1);
+            total -= price;
+            showToast("Item removed from cart");
+        }
     }
 
     // Inside 'addToCart' function

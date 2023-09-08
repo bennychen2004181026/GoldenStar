@@ -1,6 +1,7 @@
 #menu {
   background-color: #ffffff;
   padding: 2em 0;
+  position: relative; // Adding relative position so z-index takes effect
 
   h1 {
     font-size: 2.5rem;
@@ -12,6 +13,8 @@
   display: flex;
   list-style: none;
   margin-bottom: 20px;
+  z-index: 1; // Lower than cart-sidebar
+
   li {
     margin-right: 20px;
     a {
@@ -26,8 +29,12 @@
 }
 
 .menu-content {
+  z-index: 1; // Lower than cart-sidebar
+  position: relative; // To make z-index effective
+
   .tab-content {
     display: none;
+
     &.active {
       display: block;
     }
@@ -35,7 +42,7 @@
 
   .dish-gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Four images in a row */
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 
     img {
@@ -44,12 +51,6 @@
       object-fit: cover;
     }
   }
-}
-
-.dish-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .dish-item {
@@ -85,6 +86,7 @@
 }
 
 .cart-sidebar {
+  z-index: 100; // A high z-index to appear above everything else
   position: fixed;
   right: -400px;
   top: 0;

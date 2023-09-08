@@ -146,17 +146,19 @@
           </div>
           <!-- More categories can be added here -->
         </div>
+        <!-- Moved Cart Sidebar here -->
+        <div id="cartSidebar" class="cart-sidebar">
+          <a href="javascript:void(0)" class="close-cart" onclick="closeCart()"
+            >&times;</a
+          >
+          <h2>Your Cart</h2>
+          <div class="cart-items"></div>
+          <div class="cart-total">
+            <strong>Total:</strong> $<span id="cartTotal">0.00</span>
+          </div>
+        </div>
       </div>
     </section>
-<!-- Cart Sidebar -->
-    <div id="cartSidebar" class="cart-sidebar">
-      <a href="javascript:void(0)" class="close-cart" onclick="closeCart()">&times;</a>
-      <h2>Your Cart</h2>
-      <div class="cart-items"></div>
-      <div class="cart-total">
-        <strong>Total:</strong> $<span id="cartTotal">0.00</span>
-      </div>
-    </div>
 
     <!-- Footer Section -->
     <footer id="footer">

@@ -157,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cart = [];
     total = 0;
     updateCart();
+    showToast("Your cart has been cleared");
   }
 
   // Close cart sidebar

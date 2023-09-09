@@ -82,14 +82,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const filteredCart = cart.filter((item) => item.quantity > 0);
     filteredCart.forEach((item) => {
-      const thumbnail = item.thumbnail || "./assets/images/default.jpg";
-      const thumbnailFallback =
-        item.thumbnailFallback || "./assets/images/default-fallback.jpg";
+      // Use data-src and data-srcset for lazy loading
+      // onerror will change the source to the fallback image if loading fails
       cartItemsDiv.innerHTML += `
         <div class="cart-item" data-dish="${item.dish}">
-          <img src="${thumbnail}" onerror="this.src='${thumbnailFallback}'" alt="${
-        item.dish
-      }" width="50">
+          <img 
+            data-src="${item.thumbnail}" 
+            data-src-fallback="${item.thumbnailFallback}" 
+            alt="${item.dish}" 
+            width="50"
+            loading="lazy"
+            onerror="this.src=this.getAttribute('data-src-fallback')"
+          >
           ${item.dish} x<span class="cart-item-quantity">${
         item.quantity
       }</span> - $${item.price.toFixed(2)}
@@ -98,18 +102,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("cartTotal").innerText = total.toFixed(2);
     openCart();
+
+    // Lazy loading logic
+    document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+      img.src = img.getAttribute("data-src");
+    });
   }
 
-  // Toast function
+  // This function can be reused for showing toast messages
   function showToast(message) {
     const toast = document.getElementById("toast");
     toast.textContent = message;
-    toast.classList.remove("toast-hidden");
     toast.classList.add("toast-visible");
 
     setTimeout(() => {
       toast.classList.remove("toast-visible");
-      toast.classList.add("toast-hidden");
     }, 500);
   }
 

@@ -86,7 +86,7 @@
     transition: opacity 0.3s ease-in-out;
     z-index: 2; // Now controlled by JavaScript
     margin-bottom: 20px; // Add margin to bottom
-    height: 70%; // Height reduced to 60% of parent
+    height: 60%; // Height reduced to 60% of parent
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent); // Opacity gradually changes
   }
 

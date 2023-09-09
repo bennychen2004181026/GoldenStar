@@ -33,11 +33,18 @@ document.addEventListener("DOMContentLoaded", function () {
   let cart = [];
   let total = 0;
 
-  function addToCart(dish, price, action, updateUI = false) {
+  function addToCart(
+    dish,
+    price,
+    action,
+    thumbnail,
+    thumbnailFallback,
+    updateUI = false
+  ) {
     let itemIndex = cart.findIndex((item) => item.dish === dish);
-    
+
     if (itemIndex === -1 && action === "add") {
-      cart.push({ dish, price: 0, quantity: 0 });
+      cart.push({ dish, price: 0, quantity: 0, thumbnail, thumbnailFallback });
       itemIndex = cart.length - 1;
     }
 
@@ -75,7 +82,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const filteredCart = cart.filter((item) => item.quantity > 0);
     filteredCart.forEach((item) => {
-      cartItemsDiv.innerHTML += `<div class="cart-item" data-dish="${item.dish}">${item.dish} x<span class="cart-item-quantity">${item.quantity}</span> - $${item.price.toFixed(2)}</div>`;
+      const thumbnail = item.thumbnail || "./assets/images/default.jpg";
+      const thumbnailFallback =
+        item.thumbnailFallback || "./assets/images/default-fallback.jpg";
+      cartItemsDiv.innerHTML += `
+        <div class="cart-item" data-dish="${item.dish}">
+          <img src="${thumbnail}" onerror="this.src='${thumbnailFallback}'" alt="${
+        item.dish
+      }" width="50">
+          ${item.dish} x<span class="cart-item-quantity">${
+        item.quantity
+      }</span> - $${item.price.toFixed(2)}
+        </div>`;
     });
 
     document.getElementById("cartTotal").innerText = total.toFixed(2);
@@ -99,7 +117,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const addToCartButtons = document.querySelectorAll(".add-to-cart");
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      addToCart(this.getAttribute("data-dish"), 12, "add", true);
+      const dish = this.getAttribute("data-dish");
+      const thumbnail = this.getAttribute("data-thumbnail");
+      const thumbnailFallback = this.getAttribute("data-thumbnail-fallback");
+      addToCart(dish, 12, "add", thumbnail, thumbnailFallback, true);
     });
   });
 
@@ -109,15 +130,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   incrementButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const dish = this.closest(".dish-item").querySelector(".add-to-cart").getAttribute("data-dish");
-      addToCart(dish, 12, "add", true);
+      const parentDishItem =
+        this.closest(".dish-item").querySelector(".add-to-cart");
+      const dish = parentDishItem.getAttribute("data-dish");
+      const thumbnail = parentDishItem.getAttribute("data-thumbnail");
+      const thumbnailFallback = parentDishItem.getAttribute(
+        "data-thumbnail-fallback"
+      );
+      addToCart(dish, 12, "add", thumbnail, thumbnailFallback, true);
     });
   });
 
   decrementButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const dish = this.closest(".dish-item").querySelector(".add-to-cart").getAttribute("data-dish");
-      addToCart(dish, 12, "remove", true);
+      const parentDishItem =
+        this.closest(".dish-item").querySelector(".add-to-cart");
+      const dish = parentDishItem.getAttribute("data-dish");
+      const thumbnail = parentDishItem.getAttribute("data-thumbnail");
+      const thumbnailFallback = parentDishItem.getAttribute(
+        "data-thumbnail-fallback"
+      );
+      addToCart(dish, 12, "remove", thumbnail, thumbnailFallback, true);
     });
   });
 
@@ -137,9 +170,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Attach event listener to the "Proceed to Checkout" button
-  document.getElementById("proceed-to-checkout").addEventListener("click", function () {
-    proceedToCheckout();
-  });
+  document
+    .getElementById("proceed-to-checkout")
+    .addEventListener("click", function () {
+      proceedToCheckout();
+    });
 
   // Clear Cart function
   function clearCart() {

@@ -122,6 +122,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Function to simulate proceeding to checkout
+  function proceedToCheckout() {
+    if (cart.length === 0) {
+      alert("Your cart is empty!"); // Replace with a more user-friendly notification
+      return;
+    }
+    // Your code to proceed to checkout here. For now, we'll just clear the cart and show a message.
+    clearCart();
+    alert("Thank you for your purchase!"); // Replace with a more user-friendly confirmation
+  }
+
+  // Attach event listener to the "Clear Cart" button
+  document.getElementById("clear-cart").addEventListener("click", function () {
+    clearCart();
+  });
+
+  // Attach event listener to the "Proceed to Checkout" button
+  document
+    .getElementById("proceed-to-checkout")
+    .addEventListener("click", function () {
+      proceedToCheckout();
+    });
+
+  // Attach event listener to the "Clear Cart" button
+  function clearCart() {
+    cart = [];
+    total = 0;
+    updateCart();
+  }
+
   // Close cart sidebar
   document.getElementById("closeCartBtn").addEventListener("click", closeCart);
 });

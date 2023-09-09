@@ -16,24 +16,41 @@
     ></script>
     <link rel="stylesheet" href="./scss/main.css" />
     <title>Golden Star Yum Cha</title>
+    <!-- Add meta tags for SEO -->
+    <meta
+      name="description"
+      content="Welcome to Golden Star Yum Cha Restaurant. We offer fine Cantonese and Dim Sum dishes."
+    />
+    <meta
+      name="keywords"
+      content="Golder Star, Restaurant, Yum Cha, Cantonese, Dim Sum, Fine Dining"
+    />
   </head>
 
   <body>
     <!-- Header -->
-    <header class="site-header">
-      <!-- Navigation Bar -->
-      <nav class="main-nav">
-        <div class="nav-container">
-          <ul class="nav-list">
-            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Menu</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Specials</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+<header class="site-header">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Golden Star Yum Cha</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          <!-- ... other links ... -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
     <!-- Breadcrumb components -->
     <nav aria-label="breadcrumb">
@@ -59,42 +76,42 @@
       <section id="featured-dishes">
         <h2 class="section-heading">Featured Dishes</h2>
         <div id="carousel" class="carousel">
-            <div class="carousel-slides">
-                <div class="carousel-slide active">
-                    <img src="./assets/images/wonton.webp" alt="Wonton Soup" />
-                    <div class="carousel-caption">
-                        <h3>Wonton Soup</h3>
-                        <p>Delicious dish description</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="./assets/images/spring_roll.webp" alt="Spring Roll" />
-                    <div class="carousel-caption">
-                        <h3>Spring Roll</h3>
-                        <p>Delicious dish description</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="./assets/images/dimsum.webp" alt="Dim Sum" />
-                    <div class="carousel-caption">
-                        <h3>Dim Sum</h3>
-                        <p>Delicious dish description</p>
-                    </div>
-                </div>
+          <div class="carousel-slides">
+            <div class="carousel-slide active">
+              <img src="./assets/images/wonton.webp" alt="Wonton Soup" />
+              <div class="carousel-caption">
+                <h3>Wonton Soup</h3>
+                <p>Delicious dish description</p>
+              </div>
             </div>
-            <button id="prev" class="carousel-button carousel-control-prev">
-                &#10094;
-            </button>
-            <button id="next" class="carousel-button carousel-control-next">
-                &#10095;
-            </button>
-            <div class="carousel-indicators">
-                <span class="carousel-indicator active"></span>
-                <span class="carousel-indicator"></span>
-                <span class="carousel-indicator"></span>
+            <div class="carousel-slide">
+              <img src="./assets/images/spring_roll.webp" alt="Spring Roll" />
+              <div class="carousel-caption">
+                <h3>Spring Roll</h3>
+                <p>Delicious dish description</p>
+              </div>
             </div>
+            <div class="carousel-slide">
+              <img src="./assets/images/dimsum.webp" alt="Dim Sum" />
+              <div class="carousel-caption">
+                <h3>Dim Sum</h3>
+                <p>Delicious dish description</p>
+              </div>
+            </div>
+          </div>
+          <button id="prev" class="carousel-button carousel-control-prev">
+            &#10094;
+          </button>
+          <button id="next" class="carousel-button carousel-control-next">
+            &#10095;
+          </button>
+          <div class="carousel-indicators">
+            <span class="carousel-indicator active"></span>
+            <span class="carousel-indicator"></span>
+            <span class="carousel-indicator"></span>
+          </div>
         </div>
-    </section>
+      </section>
 
       <!-- Call to Action Section -->
       <section id="cta-section">

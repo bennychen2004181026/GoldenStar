@@ -35,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addToCart(dish, price, action, updateUI = false) {
     let itemIndex = cart.findIndex((item) => item.dish === dish);
-    if (itemIndex === -1) {
+    
+    if (itemIndex === -1 && action === "add") {
       cart.push({ dish, price: 0, quantity: 0 });
       itemIndex = cart.length - 1;
     }
@@ -44,27 +45,26 @@ document.addEventListener("DOMContentLoaded", function () {
       cart[itemIndex].quantity++;
       cart[itemIndex].price += price;
       total += price;
-    } else if (action === "remove" && itemIndex !== -1) {
-      // Changed this line
+      showToast(`${dish} has been added to the cart`);
+    } else if (action === "remove") {
+      if (itemIndex === -1) {
+        showToast(`There are no items to remove`);
+        return;
+      }
       if (cart[itemIndex].quantity > 1) {
         cart[itemIndex].quantity--;
         cart[itemIndex].price -= price;
         total -= price;
+        showToast(`${dish} has been removed from the cart`);
       } else if (cart[itemIndex].quantity === 1) {
         cart.splice(itemIndex, 1);
         total -= price;
+        showToast(`${dish} has been removed from the cart`);
       }
     }
 
     if (updateUI) {
       updateCart();
-    }
-
-    // Show Toast message for adding or removing items
-    if (action === "add") {
-      showToast(`${dish} has been added to the cart`);
-    } else if (action === "remove") {
-      showToast(`${dish} has been removed from the cart`);
     }
   }
 
@@ -74,12 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
     cartItemsDiv.innerHTML = "";
 
     const filteredCart = cart.filter((item) => item.quantity > 0);
-    filteredCart.forEach((item, index) => {
-      cartItemsDiv.innerHTML += `<div class="cart-item" data-dish="${
-        item.dish
-      }">${item.dish} x<span class="cart-item-quantity">${
-        item.quantity
-      }</span> - $${item.price.toFixed(2)}</div>`;
+    filteredCart.forEach((item) => {
+      cartItemsDiv.innerHTML += `<div class="cart-item" data-dish="${item.dish}">${item.dish} x<span class="cart-item-quantity">${item.quantity}</span> - $${item.price.toFixed(2)}</div>`;
     });
 
     document.getElementById("cartTotal").innerText = total.toFixed(2);
@@ -113,31 +109,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   incrementButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const dish = this.closest(".dish-item")
-        .querySelector(".add-to-cart")
-        .getAttribute("data-dish");
+      const dish = this.closest(".dish-item").querySelector(".add-to-cart").getAttribute("data-dish");
       addToCart(dish, 12, "add", true);
     });
   });
 
   decrementButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const dish = this.closest(".dish-item")
-        .querySelector(".add-to-cart")
-        .getAttribute("data-dish");
-      addToCart(dish, 12, "remove", true); // Ensure this line is working as expected
+      const dish = this.closest(".dish-item").querySelector(".add-to-cart").getAttribute("data-dish");
+      addToCart(dish, 12, "remove", true);
     });
   });
 
   // Function to simulate proceeding to checkout
   function proceedToCheckout() {
     if (cart.length === 0) {
-      alert("Your cart is empty!"); // Replace with a more user-friendly notification
+      alert("Your cart is empty!");
       return;
     }
-    // Your code to proceed to checkout here. For now, we'll just clear the cart and show a message.
     clearCart();
-    alert("Thank you for your purchase!"); // Replace with a more user-friendly confirmation
+    alert("Thank you for your purchase!");
   }
 
   // Attach event listener to the "Clear Cart" button
@@ -146,13 +137,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Attach event listener to the "Proceed to Checkout" button
-  document
-    .getElementById("proceed-to-checkout")
-    .addEventListener("click", function () {
-      proceedToCheckout();
-    });
+  document.getElementById("proceed-to-checkout").addEventListener("click", function () {
+    proceedToCheckout();
+  });
 
-  // Attach event listener to the "Clear Cart" button
+  // Clear Cart function
   function clearCart() {
     cart = [];
     total = 0;

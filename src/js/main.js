@@ -2,6 +2,9 @@
 function loadImage(element) {
   if (element.tagName === "IMG" && element.getAttribute("data-src")) {
     element.src = element.getAttribute("data-src");
+    element.onerror = function () {
+      console.error("Error loading image: ", element.src);
+    };
   }
   if (element.tagName === "SOURCE" && element.getAttribute("data-srcset")) {
     element.srcset = element.getAttribute("data-srcset");

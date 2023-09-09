@@ -42,10 +42,16 @@ document.addEventListener("DOMContentLoaded", function () {
     updateUI = false
   ) {
     let itemIndex = cart.findIndex((item) => item.dish === dish);
-
+    console.log(`Trying to load thumbnail from ${thumbnail}`);
+    let img = new Image();
+    img.src = thumbnail;
+    img.onerror = function() {
+      console.error("Error loading thumbnail: ", thumbnail);
+    };
     if (itemIndex === -1 && action === "add") {
       cart.push({ dish, price: 0, quantity: 0, thumbnail, thumbnailFallback });
       itemIndex = cart.length - 1;
+      console.log("Thumbnail path: ", thumbnail);
     }
 
     if (action === "add") {
@@ -82,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const filteredCart = cart.filter((item) => item.quantity > 0);
     filteredCart.forEach((item) => {
+      console.log("Thumbnail from cart item: ", item.thumbnail);
       // Use data-src and data-srcset for lazy loading
       // onerror will change the source to the fallback image if loading fails
       cartItemsDiv.innerHTML += `

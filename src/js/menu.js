@@ -59,6 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (updateUI) {
       updateCart();
     }
+
+    // Show Toast message for adding or removing items
+    if (action === "add") {
+      showToast(`${dish} has been added to the cart`);
+    } else if (action === "remove") {
+      showToast(`${dish} has been removed from the cart`);
+    }
   }
 
   // Update cart UI

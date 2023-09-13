@@ -217,7 +217,6 @@
   }
 }
 
-
 .cart-sidebar {
   z-index: 100; // A high z-index to appear above everything else
   position: fixed;
@@ -290,6 +289,39 @@
   .order-detail-sidebar {
     width: 300px;
     // additional styles
+  }
+}
+
+#cartSidebar {
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .cart-item-thumbnail {
+      width: 50px;
+      height: 50px;
+      margin-right: 16px;
+    }
+
+    .cart-item-name,
+    .cart-item-quantity,
+    .cart-item-price {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+  }
+
+  #cartTotal {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 16px;
+  }
+
+  .cart-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
   }
 }
 

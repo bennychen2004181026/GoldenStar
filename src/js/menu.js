@@ -119,18 +119,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const dishQuantity = parseInt(
       document.getElementById("orderQuantity").innerText
     );
-
+  
     // The image information can be fetched directly from orderDetailPicture and orderDetailImage.
-    const dishThumbnail = orderDetailImage.src;
+    const dishThumbnail = orderDetailPicture.dataset.thumbnail;
+    console.log(dishThumbnail)
+    console.log(1)
     const dishThumbnailFallback = orderDetailPicture.dataset.thumbnailFallback;
     const dishLazy = orderDetailImage.getAttribute("loading");
-
+  
     // Check if dish already exists in the cart
     const existingDish = cart.find((item) => item.dish === dishName);
-
+  
     if (existingDish) {
-      // Update the quantity of the existing dish in the cart
-      existingDish.quantity = dishQuantity;
+      // Add the new quantity to the existing dish in the cart
+      existingDish.quantity += dishQuantity; // Changed this line to add to the existing quantity
     } else {
       // Add new dish to the cart
       cart.push({
@@ -142,9 +144,72 @@ document.addEventListener("DOMContentLoaded", function () {
         lazy: dishLazy,
       });
     }
+  
+    // Update the cart UI
+    updateCartUI();
+  }
+  
+
+  // Function to update the cart UI
+  function updateCartUI() {
+    const cartItemsContainer = document.getElementById("cartItemsContainer");
+    const cartTotal = document.getElementById("cartTotal");
+
+    // Clear existing items
+    cartItemsContainer.innerHTML = "";
+
+    let totalPrice = 0;
+
+    cart.forEach((item) => {
+      // Calculate total price
+      totalPrice += item.price * item.quantity;
+
+      // Create cart item
+      const cartItem = document.createElement("div");
+      cartItem.classList.add("cart-item");
+
+      // Create image with fallback
+      const image = document.createElement("img");
+      image.src = item.thumbnail;
+      image.setAttribute("loading", item.lazy);
+      image.onerror = () => {
+        image.src = item.thumbnailFallback;
+      };
+
+      // Create dish name element
+      const dishName = document.createElement("span");
+      dishName.textContent = item.dish;
+
+      // Create dish price element
+      const dishPrice = document.createElement("span");
+      dishPrice.textContent = `Price: $${(item.price * item.quantity).toFixed(
+        2
+      )}`;
+
+      // Create dish quantity element
+      const dishQuantity = document.createElement("span");
+      dishQuantity.textContent = `Quantity: ${item.quantity}`;
+
+      // Append elements to cart item
+      cartItem.appendChild(image);
+      cartItem.appendChild(dishName);
+      cartItem.appendChild(dishPrice);
+      cartItem.appendChild(dishQuantity);
+
+      // Append cart item to cart items container
+      cartItemsContainer.appendChild(cartItem);
+    });
+
+    // Update the total price
+    cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
   }
 
-  
+  document
+    .getElementById("clearCartBtn")
+    .addEventListener("click", function () {
+      cart.length = 0; // Clear the cart array
+      updateCartUI(); // Update the UI
+    });
 
   function handleFloatingCartButton() {
     if (window.innerWidth <= 768) {

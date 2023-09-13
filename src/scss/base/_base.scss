@@ -1,0 +1,92 @@
+// Normalize browser-specific quirks *,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Set base HTML styles
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+// Set body styles
+body {
+  font-family: "Helvetica, Arial, sans-serif";
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+// Links
+a {
+  text-decoration: none;
+  color: #0077cc;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Buttons
+button {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 0.25em;
+
+  &:hover {
+    background-color: #005fa3;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+// Inputs
+input,
+textarea,
+select {
+  font-size: 1rem;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  margin-bottom: 1em;
+
+  &:focus {
+    outline: 2px solid #0077cc;
+  }
+}
+
+// Utility Classes
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+// Grid
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1em;
+}

@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to open order detail sidebar and populate its content dynamically
   function openOrderDetailSidebar(dish, price, thumbnail, thumbnailFallback) {
+    //sidebar
+    const sidebar = document.getElementById("orderDetailSidebar");
+
     // Get the elements to update
     const dishNameElement = document.getElementById("orderDishName");
     const dishPriceElement = document.getElementById("orderDishPrice");
@@ -38,8 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Trigger lazy loading by setting the src attribute
     imgElement.src = thumbnail;
 
-    // Additional code to open the sidebar, if needed
-    // For example, changing CSS classes or styles to make the sidebar visible
+    // Initialize quantity
+    document.getElementById("orderQuantity").innerText = "1";
+
+    // Show the sidebar
+    sidebar.style.right = "0";
   }
 
   // New Function to Close Ordering Sidebar
@@ -78,7 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Dummy function, you need to implement this
   function updateCartSidebar() {
-    // Update the cart sidebar dynamically based on the 'cart' array
+    // Update cart item count for floating button
+    document.getElementById("cartItemCount").innerText = cart.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
   }
 
   // This function can be reused for showing toast messages
@@ -157,15 +167,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Close cart sidebar
   document.getElementById("closeCartBtn").addEventListener("click", closeCart);
-});
 
-//to listen for clicks on each dish image
-const dishImages = document.querySelectorAll(".dish-item img");
-dishImages.forEach((image) => {
-  image.addEventListener("click", function () {
-    const dish = image.getAttribute("data-dish");
-    const price = parseFloat(image.getAttribute("data-price"));
-    const thumbnail = image.src;
-    openOrderDetailSidebar(dish, price, thumbnail);
+  //to listen for clicks on each dish image
+  const dishImages = document.querySelectorAll(".dish-item img");
+  dishImages.forEach((image) => {
+    image.addEventListener("click", function () {
+      const dish = image.getAttribute("data-dish");
+      const price = parseFloat(image.getAttribute("data-price"));
+      const thumbnail = image.src;
+      openOrderDetailSidebar(dish, price, thumbnail);
+    });
+  });
+
+  function handleFloatingCartButton() {
+    const floatingCartBtn = document.getElementById("floatingCartBtn");
+
+    if (window.innerWidth <= 768) {
+      // for tablets and mobile
+      floatingCartBtn.style.display = "block";
+    } else {
+      floatingCartBtn.style.display = "none";
+    }
+  }
+
+  // Initialize and listen for window resize events
+  handleFloatingCartButton();
+  window.addEventListener("resize", handleFloatingCartButton);
+
+  document.getElementById("floatingCartBtn").addEventListener("click", () => {
+    // Toggle the cart sidebar here. You'll implement the actual functionality in the next step.
   });
 });

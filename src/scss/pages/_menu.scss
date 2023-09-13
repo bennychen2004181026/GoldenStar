@@ -191,6 +191,19 @@
     display: block;
   }
 }
+//Floating Cart Button
+.floating-cart-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  // other styles here
+  display: none; // will be set to 'block' via JavaScript based on screen size
+
+  #cartItemCount {
+    // style for the cart item count number
+  }
+}
 
 .main-container {
   display: flex;

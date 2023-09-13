@@ -191,10 +191,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Initialize and listen for window resize events
-  handleFloatingCartButton();
-  window.addEventListener("resize", handleFloatingCartButton);
-
   document.getElementById("floatingCartBtn").addEventListener("click", () => {
-    // Toggle the cart sidebar here. You'll implement the actual functionality in the next step.
+    const cartSidebar = document.getElementById("cartSidebar");
+    const currentRight = cartSidebar.style.right;
+
+    if (currentRight === "0px" || currentRight === "") {
+      cartSidebar.style.right = "-400px"; // Hide sidebar
+    } else {
+      cartSidebar.style.right = "0px"; // Show sidebar
+    }
   });
 });

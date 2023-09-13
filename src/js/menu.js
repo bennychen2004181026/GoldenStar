@@ -122,8 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // The image information can be fetched directly from orderDetailPicture and orderDetailImage.
     const dishThumbnail = orderDetailPicture.dataset.thumbnail;
-    console.log(dishThumbnail)
-    console.log(1)
     const dishThumbnailFallback = orderDetailPicture.dataset.thumbnailFallback;
     const dishLazy = orderDetailImage.getAttribute("loading");
   
@@ -151,58 +149,57 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
   // Function to update the cart UI
-  function updateCartUI() {
-    const cartItemsContainer = document.getElementById("cartItemsContainer");
-    const cartTotal = document.getElementById("cartTotal");
+  // Update the cart UI
+function updateCartUI() {
+  const cartItemsContainer = document.getElementById("cartItemsContainer");
+  const cartTotal = document.getElementById("cartTotal");
 
-    // Clear existing items
-    cartItemsContainer.innerHTML = "";
+  // Clear existing items
+  cartItemsContainer.innerHTML = "";
 
-    let totalPrice = 0;
+  let totalPrice = 0;
 
-    cart.forEach((item) => {
-      // Calculate total price
-      totalPrice += item.price * item.quantity;
+  cart.forEach((item) => {
+    // Calculate total price
+    totalPrice += item.price * item.quantity;
 
-      // Create cart item
-      const cartItem = document.createElement("div");
-      cartItem.classList.add("cart-item");
+    // Create cart item
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");  // Add class for styling
 
-      // Create image with fallback
-      const image = document.createElement("img");
-      image.src = item.thumbnail;
-      image.setAttribute("loading", item.lazy);
-      image.onerror = () => {
-        image.src = item.thumbnailFallback;
-      };
+    // Create image with fallback
+    const image = document.createElement("img");
+    image.src = item.thumbnail;
+    image.setAttribute("loading", item.lazy);
+    image.onerror = () => {
+      image.src = item.thumbnailFallback;
+    };
 
-      // Create dish name element
-      const dishName = document.createElement("span");
-      dishName.textContent = item.dish;
+    // Create dish name element
+    const dishName = document.createElement("span");
+    dishName.textContent = item.dish;
 
-      // Create dish price element
-      const dishPrice = document.createElement("span");
-      dishPrice.textContent = `Price: $${(item.price * item.quantity).toFixed(
-        2
-      )}`;
+    // Create dish price element
+    const dishPrice = document.createElement("span");
+    dishPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
 
-      // Create dish quantity element
-      const dishQuantity = document.createElement("span");
-      dishQuantity.textContent = `Quantity: ${item.quantity}`;
+    // Create dish quantity element
+    const dishQuantity = document.createElement("span");
+    dishQuantity.textContent = `X ${item.quantity}`;
 
-      // Append elements to cart item
-      cartItem.appendChild(image);
-      cartItem.appendChild(dishName);
-      cartItem.appendChild(dishPrice);
-      cartItem.appendChild(dishQuantity);
+    // Append elements to cart item
+    cartItem.appendChild(image);
+    cartItem.appendChild(dishName);
+    cartItem.appendChild(dishPrice);
+    cartItem.appendChild(dishQuantity);
 
-      // Append cart item to cart items container
-      cartItemsContainer.appendChild(cartItem);
-    });
+    // Append cart item to cart items container
+    cartItemsContainer.appendChild(cartItem);
+  });
 
-    // Update the total price
-    cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
-  }
+  // Update the total price
+  cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
+}
 
   document
     .getElementById("clearCartBtn")

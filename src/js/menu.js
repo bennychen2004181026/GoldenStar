@@ -58,10 +58,18 @@ document.addEventListener("DOMContentLoaded", function () {
       // Update the quantity and total price of the existing item
       existingItem.quantity += quantity;
       existingItem.totalPrice = existingItem.quantity * price;
+
+      // Trigger toast notification for updated item
+      showToast(
+        `${dish} has been updated in the cart. New quantity is ${existingItem.quantity}`
+      );
     } else {
       // Add a new item to the cart
       const newItem = { dish, price, quantity, totalPrice: price * quantity };
       cart.push(newItem);
+
+      // Trigger toast notification for new item
+      showToast(`${dish} has been added to the cart.`);
     }
 
     // Update the cart sidebar UI

@@ -195,3 +195,24 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+.main-container {
+  display: flex;
+
+  .cart-sidebar,
+  .order-detail-sidebar {
+    width: 300px;
+    // additional styles
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+
+    .cart-sidebar,
+    .order-detail-sidebar {
+      width: 100%;
+    }
+  }
+}

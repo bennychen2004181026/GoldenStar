@@ -64,7 +64,7 @@
     </nav>
 
     <section id="menu">
-      <div class="container">
+      <div class="main-container">
         <h1>Menu</h1>
         <ul class="menu-tabs">
           <li class="active"><a href="#starters">Starters</a></li>
@@ -522,6 +522,27 @@
           <!-- Adding the new buttons here -->
           <button id="clear-cart">Clear Cart</button>
           <button id="proceed-to-checkout">Proceed to Checkout</button>
+        </div>
+
+        <!-- Ordering Detail Sidebar -->
+        <div id="orderDetailSidebar" class="order-detail-sidebar">
+          <button id="closeOrderDetailBtn">Close</button>
+          <img
+            data-dish="Dish Name"
+            data-price="12.00"
+            data-src="thumbnail.webp"
+            data-src-fallback="thumbnail.jpg"
+            alt=""
+            loading="lazy"
+          />
+          <h2 id="orderDishName"></h2>
+          <p id="orderDishPrice"></p>
+          <div class="quantity-controls">
+            <button class="decrement">-</button>
+            <span id="orderQuantity">1</span>
+            <button class="increment">+</button>
+          </div>
+          <button id="addToOrder">Add to Order</button>
         </div>
       </div>
     </section>

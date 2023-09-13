@@ -20,13 +20,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Open and close cart logic
-  function openCart() {
-    document.getElementById("cartSidebar").style.right = "0";
-  }
+  // Function to open order detail sidebar and populate its content dynamically
+function openOrderDetailSidebar(dish, price, thumbnail, thumbnailFallback) {
+  // Get the elements to update
+  const dishNameElement = document.getElementById('orderDishName');
+  const dishPriceElement = document.getElementById('orderDishPrice');
+  const imgElement = document.getElementById('orderThumbnail');
 
-  function closeCart() {
-    document.getElementById("cartSidebar").style.right = "-400px";
+  // Update the dish name and price
+  dishNameElement.textContent = dish;
+  dishPriceElement.textContent = '$' + price.toFixed(2);
+
+  // Update the image source for lazy loading
+  imgElement.dataset.src = thumbnail;
+  imgElement.dataset.srcFallback = thumbnailFallback;
+
+  // Trigger lazy loading by setting the src attribute
+  imgElement.src = thumbnail;
+
+  // Additional code to open the sidebar, if needed
+  // For example, changing CSS classes or styles to make the sidebar visible
+}
+
+  // New Function to Close Ordering Sidebar
+  function closeOrderDetailSidebar() {
+    document.getElementById("orderDetailSidebar").style.right = "-400px";
   }
 
   // Cart and Toast logic
@@ -45,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(`Trying to load thumbnail from ${thumbnail}`);
     let img = new Image();
     img.src = thumbnail;
-    img.onerror = function() {
+    img.onerror = function () {
       console.error("Error loading thumbnail: ", thumbnail);
     };
     if (itemIndex === -1 && action === "add") {
@@ -138,34 +156,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Increment and Decrement buttons
-  const incrementButtons = document.querySelectorAll(".increment");
-  const decrementButtons = document.querySelectorAll(".decrement");
-
-  incrementButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const parentDishItem =
-        this.closest(".dish-item").querySelector(".add-to-cart");
-      const dish = parentDishItem.getAttribute("data-dish");
-      const thumbnail = parentDishItem.getAttribute("data-thumbnail");
-      const thumbnailFallback = parentDishItem.getAttribute(
-        "data-thumbnail-fallback"
-      );
-      addToCart(dish, 12, "add", thumbnail, thumbnailFallback, true);
+  // Increment and Decrement buttons inside Ordering Sidebar
+  document
+    .querySelector(".quantity-controls .increment")
+    .addEventListener("click", function () {
+      // Your increment logic here.
+      // Update #orderQuantity
     });
-  });
 
-  decrementButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const parentDishItem =
-        this.closest(".dish-item").querySelector(".add-to-cart");
-      const dish = parentDishItem.getAttribute("data-dish");
-      const thumbnail = parentDishItem.getAttribute("data-thumbnail");
-      const thumbnailFallback = parentDishItem.getAttribute(
-        "data-thumbnail-fallback"
-      );
-      addToCart(dish, 12, "remove", thumbnail, thumbnailFallback, true);
+  document
+    .querySelector(".quantity-controls .decrement")
+    .addEventListener("click", function () {
+      // Your decrement logic here.
+      // Update #orderQuantity
     });
+
+  // Add to cart button
+  document.getElementById("addToOrder").addEventListener("click", function () {
+    // Logic to add to cart
+    // Update the cart and close the order detail sidebar
+    closeOrderDetailSidebar();
   });
 
   // Function to simulate proceeding to checkout
@@ -200,4 +210,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Close cart sidebar
   document.getElementById("closeCartBtn").addEventListener("click", closeCart);
+});
+
+//to listen for clicks on each dish image
+const dishImages = document.querySelectorAll(".dish-item img");
+dishImages.forEach((image) => {
+  image.addEventListener("click", function () {
+    const dish = image.getAttribute("data-dish");
+    const price = parseFloat(image.getAttribute("data-price"));
+    const thumbnail = image.src;
+    openOrderDetailSidebar(dish, price, thumbnail);
+  });
 });

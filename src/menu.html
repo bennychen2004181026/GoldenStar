@@ -65,481 +65,158 @@
 
     <section id="menu">
       <div class="main-container">
-        <h1>Menu</h1>
-        <ul class="menu-tabs">
-          <li class="active"><a href="#starters">Starters</a></li>
-          <li><a href="#mains">Main Courses</a></li>
-          <li><a href="#desserts">Desserts</a></li>
-          <!-- More categories can be added here -->
-        </ul>
+        <div class="main-content-container">
+          <h1>Menu</h1>
+          <ul class="menu-tabs">
+            <li class="active"><a href="#starters">Starters</a></li>
+            <li><a href="#mains">Main Courses</a></li>
+            <li><a href="#desserts">Desserts</a></li>
+            <!-- More categories can be added here -->
+          </ul>
 
-        <div class="menu-content">
-          <div id="starters" class="tab-content active">
-            <div class="dish-gallery">
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
+          <div class="menu-content">
+            <div id="starters" class="tab-content active">
+              <div class="dish-gallery">
+                <!-- Single dish item -->
+                <div class="dish-item">
+                  <!-- Dish image -->
+                  <picture
+                    data-dish="seafood"
+                    data-price="19.99"
+                    data-quantity="0"
                     data-thumbnail="./assets/thumbnail/seafood.webp"
                     data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
+                    data-lazy="true"
                   >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
+                    <source
+                      srcset="./assets/images/seafood.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="./assets/images/seafood.jpg"
+                      alt="Seafood Delight"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <div class="dishInfo">
+                    <div class="dishPrice text-capitalize">19.99</div>
+                    <div class="dishDescription">Food Description</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!--  -->
-          <div id="mains" class="tab-content">
-            <div class="dish-gallery">
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
+            <!--  -->
+            <div id="mains" class="tab-content">
+              <div class="dish-gallery">
+                <!-- Single dish item -->
+                <div class="dish-item">
+                  <!-- Dish image -->
+                  <picture
+                    data-dish="seafood"
+                    data-price="19.99"
+                    data-quantity="0"
                     data-thumbnail="./assets/thumbnail/seafood.webp"
                     data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
+                    data-lazy="true"
                   >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
+                    <source
+                      srcset="./assets/images/seafood.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="./assets/images/seafood.jpg"
+                      alt="Seafood Delight"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <div class="dishInfo">
+                    <div class="dishPrice text-capitalize">19.99</div>
+                    <div class="dishDescription">Food Description</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div id="desserts" class="tab-content">
-            <div class="dish-gallery">
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
+
+            <div id="desserts" class="tab-content">
+              <div class="dish-gallery">
+                <!-- Single dish item -->
+                <div class="dish-item">
+                  <!-- Dish image -->
+                  <picture
+                    data-dish="seafood"
+                    data-price="19.99"
+                    data-quantity="0"
                     data-thumbnail="./assets/thumbnail/seafood.webp"
                     data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
+                    data-lazy="true"
                   >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <!-- Single dish item -->
-              <div class="dish-item">
-                <!-- Dish image -->
-                <picture>
-                  <source
-                    data-srcset="./assets/images/seafood.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    data-src="./assets/images/seafood.jpg"
-                    alt="Dish 1"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- Add to cart -->
-                <div
-                  class="add-to-cart"
-                  data-dish="seafood"
-                  data-quantity="0"
-                  data-thumbnail="./assets/thumbnail/seafood.webp"
-                  data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                >
-                  Add to Cart
-                </div>
-                <!-- Add Quantity Control Here -->
-                <div class="quantity-control">
-                  <button
-                    class="decrement"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    -
-                  </button>
-                  <button
-                    class="increment"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                  >
-                    +
-                  </button>
+                    <source
+                      srcset="./assets/images/seafood.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="./assets/images/seafood.jpg"
+                      alt="Seafood Delight"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <div class="dishInfo">
+                    <div class="dishPrice text-capitalize">19.99</div>
+                    <div class="dishDescription">Food Description</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- More categories can be added here -->
-        </div>
-
-        <!-- Cart Sidebar -->
-        <div id="cartSidebar" class="cart-sidebar">
-          <button id="closeCartBtn">Close</button>
-          <div id="cartItemsContainer">
-            <!-- Dynamic cart items will be injected here -->
-          </div>
-          <div id="cartTotal">
-            <!-- Dynamic total price will be displayed here -->
+            <!-- More categories can be added here -->
           </div>
         </div>
+        <!-- Switching Sidebars -->
+        <div class="sidebars-container active">
+          <!-- Ordering Detail Sidebar -->
+          <div id="orderDetailSidebar" class="order-detail-sidebar">
+            <!-- Close button -->
+            <button id="closeOrderDetailBtn">Close</button>
 
-        <!-- Ordering Detail Sidebar -->
-        <div id="orderDetailSidebar" class="order-detail-sidebar">
-          <button id="closeOrderDetailBtn">Close</button>
-          <img
-            data-dish="Dish Name"
-            data-price="12.00"
-            data-src="thumbnail.webp"
-            data-src-fallback="thumbnail.jpg"
-            alt=""
-            loading="lazy"
-          />
-          <h2 id="orderDishName"></h2>
-          <p id="orderDishPrice"></p>
-          <div class="quantity-controls">
-            <button class="decrement">-</button>
-            <span id="orderQuantity">1</span>
-            <button class="increment">+</button>
+            <!-- Dish image -->
+            <picture
+              id="orderDetailPicture"
+              data-dish=""
+              data-price=""
+              data-quantity=""
+              data-thumbnail=""
+              data-thumbnail-fallback=""
+              data-lazy=""
+            >
+              <source id="orderDetailSource" srcset="" type="image/webp" />
+              <img id="orderDetailImage" src="" alt="" loading="lazy" />
+            </picture>
+
+            <!-- Dish Information -->
+            <h2 id="orderDishName"></h2>
+            <p id="orderDishPrice"></p>
+
+            <!-- Quantity Controls -->
+            <div class="quantity-controls">
+              <button id="decrement" class="decrement">-</button>
+              <span id="orderQuantity">1</span>
+              <button id="increment" class="increment">+</button>
+            </div>
+
+            <!-- Add to Cart button -->
+            <button id="addToCart">Add to Cart</button>
           </div>
-          <button id="addToOrder">Add to Order</button>
+
+          <!-- Cart side bar -->
+          <div id="cartSidebar" class="cart-sidebar">
+            <button id="closeCartBtn">Close</button>
+            <div id="cartItemsContainer">
+              <!-- Dynamic cart items will be injected here -->
+            </div>
+            <div id="cartTotal">
+              <!-- Dynamic total price will be displayed here -->
+            </div>
+          </div>
         </div>
       </div>
     </section>

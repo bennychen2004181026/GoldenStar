@@ -1,28 +1,135 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Tab navigation logic
+  // Cache DOM elements
   const tabs = document.querySelectorAll(".menu-tabs li");
   const tabContents = document.querySelectorAll(".tab-content");
+  const dishItems = document.querySelectorAll(".dish-item");
+  const floatingCartBtn = document.getElementById("floatingCartBtn");
+  const orderDetailSidebar = document.getElementById("orderDetailSidebar");
+  const cartSidebar = document.getElementById("cartSidebar");
+  const orderDetailPicture = document.getElementById("orderDetailPicture");
+  const orderDetailImage = document.getElementById("orderDetailImage");
+  const orderDetailSource = document.getElementById("orderDetailSource");
+  const addToCartBtn = document.getElementById("addToCart");
+  const pictureElement = dishItemElement.querySelector("picture");
+  // Initialize cart array and UI
+  let cart = [];
+  handleFloatingCartButton();
 
-  tabs.forEach(function (tab, tabIndex) {
-    tab.addEventListener("click", function () {
-      tabs.forEach(function (innerTab) {
-        innerTab.classList.remove("active");
-      });
-      tab.classList.add("active");
-
-      tabContents.forEach(function (content, contentIndex) {
-        if (contentIndex === tabIndex) {
-          content.classList.add("active");
-        } else {
-          content.classList.remove("active");
-        }
-      });
-    });
+ // Event Listeners
+ tabs.forEach((tab, tabIndex) => {
+  tab.addEventListener("click", function () {
+    handleTabClick(this, tabIndex);
   });
+});
+
+dishItems.forEach((item) => {
+  item.addEventListener("click", function (event) {
+    handleDishClick(event, this);
+  });
+});
+
+addToCartBtn.addEventListener("click", function () {
+  handleAddToCart(orderDetailPicture);
+  toggleSidebars(cartSidebar, orderDetailSidebar);  // toggle to cartSidebar
+});
+
+floatingCartBtn.addEventListener("click", toggleCartSidebar);
+window.addEventListener("resize", handleFloatingCartButton);
+
+  function toggleCartSidebar() {
+    const currentRight = cartSidebar.style.right;
+    cartSidebar.style.right = currentRight === "0px" ? "-400px" : "0";
+  }
+
+
+  // Function Definitions
+  function handleDishClick(event, dishItemElement) {
+    // Transfer necessary attributes for Order Detail Sidebar
+    populateOrderDetailSidebar(dishItemElement);
+    toggleSidebars(orderDetailSidebar, cartSidebar);
+  }
+
+  function populateOrderDetailSidebar(dishItemElement) {
+    const pictureElement = dishItemElement.querySelector("picture");
+    const dataset = pictureElement.dataset;
+
+    // Populate picture attributes
+    orderDetailPicture.dataset.dish = dataset.dish;
+    orderDetailPicture.dataset.price = dataset.price;
+    orderDetailPicture.dataset.thumbnail = dataset.thumbnail;
+    orderDetailPicture.dataset.thumbnailFallback = dataset.thumbnailFallback;
+
+    // Populate image and source tags for WebP and fallback
+    orderDetailSource.srcset = pictureElement
+      .querySelector("source")
+      .getAttribute("srcset");
+    orderDetailImage.src = pictureElement
+      .querySelector("img")
+      .getAttribute("src");
+
+    // Populate sidebar text content
+    document.getElementById("orderDishName").textContent = dataset.dish;
+    document.getElementById("orderDishPrice").textContent = `$${parseFloat(
+      dataset.price
+    ).toFixed(2)}`;
+    document.getElementById("orderQuantity").innerText = "1";
+
+    orderDetailSidebar.style.right = "0";
+  }
+
+  function toggleSidebars(showSidebar, hideSidebar) {
+    showSidebar.style.right = "0";
+    hideSidebar.style.right = "-400px";
+  }
+
+  function handleTabClick(tabElement, tabIndex) {
+    tabs.forEach((tab) => tab.classList.remove("active"));
+    tabElement.classList.add("active");
+
+    tabContents.forEach((content, contentIndex) => {
+      if (tabIndex === contentIndex) {
+        content.classList.add("active");
+      } else {
+        content.classList.remove("active");
+      }
+    });
+  }
+
+  function handleAddToCart() {
+    const pictureElement = dishItemElement.querySelector("picture");
+    const dataset = pictureElement.dataset;
+    // Fetch relevant data attributes from the order sidebar
+    const dishName = document.getElementById("orderDishName").textContent;
+    const dishPrice = parseFloat(
+      document.getElementById("orderDishPrice").textContent.substr(1)
+    );
+    const dishQuantity = parseInt(
+      document.getElementById("orderQuantity").innerText
+    );
+    const dishThumbnail = document.getElementById("orderThumbnail").src;
+    const dishFallback = document
+      .getElementById("orderThumbnail")
+      .getAttribute("data-src-fallback");
+    const dishLazy = document
+      .getElementById("orderThumbnail")
+      .getAttribute("loading");
+
+    // Add to cart array
+    cart.push({
+      dish: dataset.dish,
+      price: parseFloat(dataset.price),
+      quantity: parseInt(dataset.quantity || "1"),
+      thumbnail: dataset.thumbnail,
+      thumbnailFallback: dataset.thumbnailFallback,
+    });
+  }
 
   // Function to open order detail sidebar and populate its content dynamically
-  function openOrderDetailSidebar(dish, price, thumbnail, thumbnailFallback) {
-    //sidebar
+  function openOrderDetailSidebar(event) {
+    // Extract the data-attributes from the event target (clicked element)
+    const dataset = event.currentTarget.querySelector("picture").dataset;
+
+    // sidebar
     const sidebar = document.getElementById("orderDetailSidebar");
 
     // Get the elements to update
@@ -31,15 +138,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const imgElement = document.getElementById("orderThumbnail");
 
     // Update the dish name and price
-    dishNameElement.textContent = dish;
-    dishPriceElement.textContent = "$" + price.toFixed(2);
+    dishNameElement.textContent = dataset.dish;
+    dishPriceElement.textContent = "$" + parseFloat(dataset.price).toFixed(2);
 
     // Update the image source for lazy loading
-    imgElement.dataset.src = thumbnail;
-    imgElement.dataset.srcFallback = thumbnailFallback;
+    imgElement.dataset.src = dataset.thumbnail;
+    imgElement.dataset.srcFallback = dataset.thumbnailFallback;
 
     // Trigger lazy loading by setting the src attribute
-    imgElement.src = thumbnail;
+    imgElement.src = dataset.thumbnail;
 
     // Initialize quantity
     document.getElementById("orderQuantity").innerText = "1";
@@ -48,157 +155,11 @@ document.addEventListener("DOMContentLoaded", function () {
     sidebar.style.right = "0";
   }
 
-  // New Function to Close Ordering Sidebar
-  function closeOrderDetailSidebar() {
-    document.getElementById("orderDetailSidebar").style.right = "-400px";
-  }
-
-  // Cart and Toast logic
-  let cart = [];
-
-  function addToCart(dish, price, quantity) {
-    // Check if the dish is already in the cart
-    const existingItem = cart.find((item) => item.dish === dish);
-
-    if (existingItem) {
-      // Update the quantity and total price of the existing item
-      existingItem.quantity += quantity;
-      existingItem.totalPrice = existingItem.quantity * price;
-
-      // Trigger toast notification for updated item
-      showToast(
-        `${dish} has been updated in the cart. New quantity is ${existingItem.quantity}`
-      );
-    } else {
-      // Add a new item to the cart
-      const newItem = { dish, price, quantity, totalPrice: price * quantity };
-      cart.push(newItem);
-
-      // Trigger toast notification for new item
-      showToast(`${dish} has been added to the cart.`);
-    }
-
-    // Update the cart sidebar UI
-    updateCartSidebar();
-  }
-
-  // Dummy function, you need to implement this
-  function updateCartSidebar() {
-    // Update cart item count for floating button
-    document.getElementById("cartItemCount").innerText = cart.reduce(
-      (acc, item) => acc + item.quantity,
-      0
-    );
-  }
-
-  // This function can be reused for showing toast messages
-  function showToast(message) {
-    const toast = document.getElementById("toast");
-    toast.textContent = message;
-    toast.classList.add("toast-visible");
-
-    setTimeout(() => {
-      toast.classList.remove("toast-visible");
-    }, 500);
-  }
-
-  // Add to Cart buttons
-  const addToCartButtons = document.querySelectorAll(".add-to-cart");
-  addToCartButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const dish = this.getAttribute("data-dish");
-      const thumbnail = this.getAttribute("data-thumbnail");
-      const thumbnailFallback = this.getAttribute("data-thumbnail-fallback");
-      addToCart(dish, 12, "add", thumbnail, thumbnailFallback, true);
-    });
-  });
-
-  // Increment and Decrement buttons inside Ordering Sidebar
-  document
-    .querySelector(".quantity-controls .increment")
-    .addEventListener("click", function () {
-      // Your increment logic here.
-      // Update #orderQuantity
-    });
-
-  document
-    .querySelector(".quantity-controls .decrement")
-    .addEventListener("click", function () {
-      // Your decrement logic here.
-      // Update #orderQuantity
-    });
-
-  // Add to cart button
-  document.getElementById("addToOrder").addEventListener("click", function () {
-    // Logic to add to cart
-    // Update the cart and close the order detail sidebar
-    closeOrderDetailSidebar();
-  });
-
-  // Function to simulate proceeding to checkout
-  function proceedToCheckout() {
-    if (cart.length === 0) {
-      alert("Your cart is empty!");
-      return;
-    }
-    clearCart();
-    alert("Thank you for your purchase!");
-  }
-
-  // Attach event listener to the "Clear Cart" button
-  document.getElementById("clear-cart").addEventListener("click", function () {
-    clearCart();
-  });
-
-  // Attach event listener to the "Proceed to Checkout" button
-  document
-    .getElementById("proceed-to-checkout")
-    .addEventListener("click", function () {
-      proceedToCheckout();
-    });
-
-  // Clear Cart function
-  function clearCart() {
-    cart = [];
-    total = 0;
-    updateCart();
-    showToast("Your cart has been cleared");
-  }
-
-  // Close cart sidebar
-  document.getElementById("closeCartBtn").addEventListener("click", closeCart);
-
-  //to listen for clicks on each dish image
-  const dishImages = document.querySelectorAll(".dish-item img");
-  dishImages.forEach((image) => {
-    image.addEventListener("click", function () {
-      const dish = image.getAttribute("data-dish");
-      const price = parseFloat(image.getAttribute("data-price"));
-      const thumbnail = image.src;
-      openOrderDetailSidebar(dish, price, thumbnail);
-    });
-  });
-
   function handleFloatingCartButton() {
-    const floatingCartBtn = document.getElementById("floatingCartBtn");
-
     if (window.innerWidth <= 768) {
-      // for tablets and mobile
       floatingCartBtn.style.display = "block";
     } else {
       floatingCartBtn.style.display = "none";
     }
   }
-
-  // Initialize and listen for window resize events
-  document.getElementById("floatingCartBtn").addEventListener("click", () => {
-    const cartSidebar = document.getElementById("cartSidebar");
-    const currentRight = cartSidebar.style.right;
-
-    if (currentRight === "0px" || currentRight === "") {
-      cartSidebar.style.right = "-400px"; // Hide sidebar
-    } else {
-      cartSidebar.style.right = "0px"; // Show sidebar
-    }
-  });
 });

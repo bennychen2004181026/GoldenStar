@@ -21,26 +21,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Function to open order detail sidebar and populate its content dynamically
-function openOrderDetailSidebar(dish, price, thumbnail, thumbnailFallback) {
-  // Get the elements to update
-  const dishNameElement = document.getElementById('orderDishName');
-  const dishPriceElement = document.getElementById('orderDishPrice');
-  const imgElement = document.getElementById('orderThumbnail');
+  function openOrderDetailSidebar(dish, price, thumbnail, thumbnailFallback) {
+    // Get the elements to update
+    const dishNameElement = document.getElementById("orderDishName");
+    const dishPriceElement = document.getElementById("orderDishPrice");
+    const imgElement = document.getElementById("orderThumbnail");
 
-  // Update the dish name and price
-  dishNameElement.textContent = dish;
-  dishPriceElement.textContent = '$' + price.toFixed(2);
+    // Update the dish name and price
+    dishNameElement.textContent = dish;
+    dishPriceElement.textContent = "$" + price.toFixed(2);
 
-  // Update the image source for lazy loading
-  imgElement.dataset.src = thumbnail;
-  imgElement.dataset.srcFallback = thumbnailFallback;
+    // Update the image source for lazy loading
+    imgElement.dataset.src = thumbnail;
+    imgElement.dataset.srcFallback = thumbnailFallback;
 
-  // Trigger lazy loading by setting the src attribute
-  imgElement.src = thumbnail;
+    // Trigger lazy loading by setting the src attribute
+    imgElement.src = thumbnail;
 
-  // Additional code to open the sidebar, if needed
-  // For example, changing CSS classes or styles to make the sidebar visible
-}
+    // Additional code to open the sidebar, if needed
+    // For example, changing CSS classes or styles to make the sidebar visible
+  }
 
   // New Function to Close Ordering Sidebar
   function closeOrderDetailSidebar() {
@@ -49,89 +49,28 @@ function openOrderDetailSidebar(dish, price, thumbnail, thumbnailFallback) {
 
   // Cart and Toast logic
   let cart = [];
-  let total = 0;
 
-  function addToCart(
-    dish,
-    price,
-    action,
-    thumbnail,
-    thumbnailFallback,
-    updateUI = false
-  ) {
-    let itemIndex = cart.findIndex((item) => item.dish === dish);
-    console.log(`Trying to load thumbnail from ${thumbnail}`);
-    let img = new Image();
-    img.src = thumbnail;
-    img.onerror = function () {
-      console.error("Error loading thumbnail: ", thumbnail);
-    };
-    if (itemIndex === -1 && action === "add") {
-      cart.push({ dish, price: 0, quantity: 0, thumbnail, thumbnailFallback });
-      itemIndex = cart.length - 1;
-      console.log("Thumbnail path: ", thumbnail);
+  function addToCart(dish, price, quantity) {
+    // Check if the dish is already in the cart
+    const existingItem = cart.find((item) => item.dish === dish);
+
+    if (existingItem) {
+      // Update the quantity and total price of the existing item
+      existingItem.quantity += quantity;
+      existingItem.totalPrice = existingItem.quantity * price;
+    } else {
+      // Add a new item to the cart
+      const newItem = { dish, price, quantity, totalPrice: price * quantity };
+      cart.push(newItem);
     }
 
-    if (action === "add") {
-      cart[itemIndex].quantity++;
-      cart[itemIndex].price += price;
-      total += price;
-      showToast(`${dish} has been added to the cart`);
-    } else if (action === "remove") {
-      if (itemIndex === -1) {
-        showToast(`There are no items to remove`);
-        return;
-      }
-      if (cart[itemIndex].quantity > 1) {
-        cart[itemIndex].quantity--;
-        cart[itemIndex].price -= price;
-        total -= price;
-        showToast(`${dish} has been removed from the cart`);
-      } else if (cart[itemIndex].quantity === 1) {
-        cart.splice(itemIndex, 1);
-        total -= price;
-        showToast(`${dish} has been removed from the cart`);
-      }
-    }
-
-    if (updateUI) {
-      updateCart();
-    }
+    // Update the cart sidebar UI
+    updateCartSidebar();
   }
 
-  // Update cart UI
-  function updateCart() {
-    let cartItemsDiv = document.querySelector(".cart-items");
-    cartItemsDiv.innerHTML = "";
-
-    const filteredCart = cart.filter((item) => item.quantity > 0);
-    filteredCart.forEach((item) => {
-      console.log("Thumbnail from cart item: ", item.thumbnail);
-      // Use data-src and data-srcset for lazy loading
-      // onerror will change the source to the fallback image if loading fails
-      cartItemsDiv.innerHTML += `
-        <div class="cart-item" data-dish="${item.dish}">
-          <img 
-            data-src="${item.thumbnail}" 
-            data-src-fallback="${item.thumbnailFallback}" 
-            alt="${item.dish}" 
-            width="50"
-            loading="lazy"
-            onerror="this.src=this.getAttribute('data-src-fallback')"
-          >
-          ${item.dish} x<span class="cart-item-quantity">${
-        item.quantity
-      }</span> - $${item.price.toFixed(2)}
-        </div>`;
-    });
-
-    document.getElementById("cartTotal").innerText = total.toFixed(2);
-    openCart();
-
-    // Lazy loading logic
-    document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
-      img.src = img.getAttribute("data-src");
-    });
+  // Dummy function, you need to implement this
+  function updateCartSidebar() {
+    // Update the cart sidebar dynamically based on the 'cart' array
   }
 
   // This function can be reused for showing toast messages

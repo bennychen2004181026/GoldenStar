@@ -509,19 +509,16 @@
           </div>
           <!-- More categories can be added here -->
         </div>
-        <!-- Moved Cart Sidebar here -->
+        
+        <!-- Cart Sidebar -->
         <div id="cartSidebar" class="cart-sidebar">
-          <a href="javascript:void(0)" id="closeCartBtn" class="close-cart"
-            >&times;</a
-          >
-          <h2>Your Cart</h2>
-          <div class="cart-items"></div>
-          <div class="cart-total">
-            <strong>Total:</strong> $<span id="cartTotal">0.00</span>
+          <button id="closeCartBtn">Close</button>
+          <div id="cartItemsContainer">
+            <!-- Dynamic cart items will be injected here -->
           </div>
-          <!-- Adding the new buttons here -->
-          <button id="clear-cart">Clear Cart</button>
-          <button id="proceed-to-checkout">Proceed to Checkout</button>
+          <div id="cartTotal">
+            <!-- Dynamic total price will be displayed here -->
+          </div>
         </div>
 
         <!-- Ordering Detail Sidebar -->

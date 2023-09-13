@@ -10,43 +10,65 @@ document.addEventListener("DOMContentLoaded", function () {
   const orderDetailImage = document.getElementById("orderDetailImage");
   const orderDetailSource = document.getElementById("orderDetailSource");
   const addToCartBtn = document.getElementById("addToCart");
-  const pictureElement = dishItemElement.querySelector("picture");
+  const closeOrderDetailBtn = document.getElementById("closeOrderDetailBtn");
+  const decrementBtn = document.getElementById("decrement");
+  const incrementBtn = document.getElementById("increment");
+  const orderQuantitySpan = document.getElementById("orderQuantity");
+  console.log(decrementBtn);
+
   // Initialize cart array and UI
   let cart = [];
   handleFloatingCartButton();
 
- // Event Listeners
- tabs.forEach((tab, tabIndex) => {
-  tab.addEventListener("click", function () {
-    handleTabClick(this, tabIndex);
+  // Event Listeners
+  tabs.forEach((tab, tabIndex) => {
+    tab.addEventListener("click", function () {
+      handleTabClick(this, tabIndex);
+    });
   });
-});
 
-dishItems.forEach((item) => {
-  item.addEventListener("click", function (event) {
-    handleDishClick(event, this);
+  dishItems.forEach((item) => {
+    item.addEventListener("click", function (event) {
+      handleDishClick(event, this);
+    });
   });
-});
 
-addToCartBtn.addEventListener("click", function () {
-  handleAddToCart(orderDetailPicture);
-  toggleSidebars(cartSidebar, orderDetailSidebar);  // toggle to cartSidebar
-});
+  addToCartBtn.addEventListener("click", function () {
+    handleAddToCart(orderDetailPicture);
+    cartSidebar.style.right = "0";
+    orderDetailSidebar.style.right = "-400px";
+  });
 
-floatingCartBtn.addEventListener("click", toggleCartSidebar);
-window.addEventListener("resize", handleFloatingCartButton);
+  closeOrderDetailBtn.addEventListener("click", function () {
+    cartSidebar.style.right = "0";
+    orderDetailSidebar.style.right = "-400px";
+  });
 
-  function toggleCartSidebar() {
-    const currentRight = cartSidebar.style.right;
-    cartSidebar.style.right = currentRight === "0px" ? "-400px" : "0";
-  }
+  // floatingCartBtn.addEventListener("click", toggleCartSidebar);
+  // window.addEventListener("resize", handleFloatingCartButton);
 
+  // Logic for decrementing and increment the order quantity
+  decrementBtn.addEventListener("click", function () {
+    let quantity = parseInt(orderQuantitySpan.innerText);
+    console.log(quantity); // Should show current quantity
+    if (quantity > 1) {
+      quantity--;
+    }
+    orderQuantitySpan.innerText = quantity;
+  });
+
+  incrementBtn.addEventListener("click", function () {
+    let quantity = parseInt(orderQuantitySpan.innerText);
+    quantity++;
+    orderQuantitySpan.innerText = quantity;
+  });
 
   // Function Definitions
   function handleDishClick(event, dishItemElement) {
     // Transfer necessary attributes for Order Detail Sidebar
     populateOrderDetailSidebar(dishItemElement);
-    toggleSidebars(orderDetailSidebar, cartSidebar);
+    orderDetailSidebar.style.right = "0";
+    cartSidebar.style.right = "-400px";
   }
 
   function populateOrderDetailSidebar(dishItemElement) {
@@ -73,13 +95,6 @@ window.addEventListener("resize", handleFloatingCartButton);
       dataset.price
     ).toFixed(2)}`;
     document.getElementById("orderQuantity").innerText = "1";
-
-    orderDetailSidebar.style.right = "0";
-  }
-
-  function toggleSidebars(showSidebar, hideSidebar) {
-    showSidebar.style.right = "0";
-    hideSidebar.style.right = "-400px";
   }
 
   function handleTabClick(tabElement, tabIndex) {
@@ -96,8 +111,6 @@ window.addEventListener("resize", handleFloatingCartButton);
   }
 
   function handleAddToCart() {
-    const pictureElement = dishItemElement.querySelector("picture");
-    const dataset = pictureElement.dataset;
     // Fetch relevant data attributes from the order sidebar
     const dishName = document.getElementById("orderDishName").textContent;
     const dishPrice = parseFloat(
@@ -106,54 +119,32 @@ window.addEventListener("resize", handleFloatingCartButton);
     const dishQuantity = parseInt(
       document.getElementById("orderQuantity").innerText
     );
-    const dishThumbnail = document.getElementById("orderThumbnail").src;
-    const dishFallback = document
-      .getElementById("orderThumbnail")
-      .getAttribute("data-src-fallback");
-    const dishLazy = document
-      .getElementById("orderThumbnail")
-      .getAttribute("loading");
 
-    // Add to cart array
-    cart.push({
-      dish: dataset.dish,
-      price: parseFloat(dataset.price),
-      quantity: parseInt(dataset.quantity || "1"),
-      thumbnail: dataset.thumbnail,
-      thumbnailFallback: dataset.thumbnailFallback,
-    });
+    // The image information can be fetched directly from orderDetailPicture and orderDetailImage.
+    const dishThumbnail = orderDetailImage.src;
+    const dishThumbnailFallback = orderDetailPicture.dataset.thumbnailFallback;
+    const dishLazy = orderDetailImage.getAttribute("loading");
+
+    // Check if dish already exists in the cart
+    const existingDish = cart.find((item) => item.dish === dishName);
+
+    if (existingDish) {
+      // Update the quantity of the existing dish in the cart
+      existingDish.quantity = dishQuantity;
+    } else {
+      // Add new dish to the cart
+      cart.push({
+        dish: dishName,
+        price: dishPrice,
+        quantity: dishQuantity,
+        thumbnail: dishThumbnail,
+        thumbnailFallback: dishThumbnailFallback,
+        lazy: dishLazy,
+      });
+    }
   }
 
-  // Function to open order detail sidebar and populate its content dynamically
-  function openOrderDetailSidebar(event) {
-    // Extract the data-attributes from the event target (clicked element)
-    const dataset = event.currentTarget.querySelector("picture").dataset;
-
-    // sidebar
-    const sidebar = document.getElementById("orderDetailSidebar");
-
-    // Get the elements to update
-    const dishNameElement = document.getElementById("orderDishName");
-    const dishPriceElement = document.getElementById("orderDishPrice");
-    const imgElement = document.getElementById("orderThumbnail");
-
-    // Update the dish name and price
-    dishNameElement.textContent = dataset.dish;
-    dishPriceElement.textContent = "$" + parseFloat(dataset.price).toFixed(2);
-
-    // Update the image source for lazy loading
-    imgElement.dataset.src = dataset.thumbnail;
-    imgElement.dataset.srcFallback = dataset.thumbnailFallback;
-
-    // Trigger lazy loading by setting the src attribute
-    imgElement.src = dataset.thumbnail;
-
-    // Initialize quantity
-    document.getElementById("orderQuantity").innerText = "1";
-
-    // Show the sidebar
-    sidebar.style.right = "0";
-  }
+  
 
   function handleFloatingCartButton() {
     if (window.innerWidth <= 768) {

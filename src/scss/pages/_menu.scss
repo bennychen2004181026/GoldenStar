@@ -1,6 +1,6 @@
 #menu {
   background-color: #ffffff;
-  padding: 2em 0;
+  padding: 0.2em 0;
   position: relative; // Adding relative position so z-index takes effect
 
   h1 {
@@ -140,10 +140,88 @@
   }
 }
 
+.order-detail-sidebar {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  right: -400px;
+  bottom: 0;
+  width: 400px;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000; // To ensure it appears above all other elements
+
+  // Close button style
+  #closeOrderDetailBtn {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  // Dish image style
+  picture {
+    width: 100%;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  // Dish information style
+  h2 {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+
+  #orderDishPrice {
+    font-size: 18px;
+    color: #333;
+  }
+
+  // Quantity control styles
+  .quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+
+    button {
+      padding: 10px 15px;
+      font-size: 18px;
+      cursor: pointer;
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    #orderQuantity {
+      padding: 0 20px;
+      font-size: 18px;
+    }
+  }
+
+  // Add to Cart button
+  #addToCart {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+
 .cart-sidebar {
   z-index: 100; // A high z-index to appear above everything else
   position: fixed;
-  right: -400px;
+  right: 0;
   top: 0;
   width: 400px;
   height: 100%;

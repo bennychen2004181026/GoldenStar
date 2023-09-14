@@ -11,10 +11,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const orderDetailSource = document.getElementById("orderDetailSource");
   const addToCartBtn = document.getElementById("addToCart");
   const closeOrderDetailBtn = document.getElementById("closeOrderDetailBtn");
+  const mainContainer = document.getElementById("main-container");
+  const closeOrderDetailBtnInSmallScreen = document.getElementById(
+    "closeOrderDetailBtnInSmallScreen"
+  );
+  const windowWidth = window.innerWidth;
   const decrementBtn = document.getElementById("decrement");
   const incrementBtn = document.getElementById("increment");
   const orderQuantitySpan = document.getElementById("orderQuantity");
-  console.log(decrementBtn);
+  const sidebars = document.getElementById("sidebars-container");
+  const mainContentContainer = document.getElementById(
+    "main-content-container"
+  );
+  console.log(mainContainer);
 
   // Initialize cart array and UI
   let cart = [];
@@ -29,19 +38,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   dishItems.forEach((item) => {
     item.addEventListener("click", function (event) {
-      handleDishClick(event, this);
+      handleDishClick(event, item);
     });
   });
 
   addToCartBtn.addEventListener("click", function () {
     handleAddToCart(orderDetailPicture);
+    // if (windowWidth > 767.9) {
     cartSidebar.style.display = "flex";
-    orderDetailSidebar.style.display = "none";
-  });
+    orderDetailSidebar.style.display = "none";}
+  
+  // }
+  );
 
   closeOrderDetailBtn.addEventListener("click", function () {
     cartSidebar.style.display = "flex";
     orderDetailSidebar.style.display = "none";
+  });
+  closeOrderDetailBtnInSmallScreen.addEventListener("click", function () {
+    sidebars.style.display = "none";
+    mainContentContainer.style.display = "flex";
   });
 
   // floatingCartBtn.addEventListener("click", toggleCartSidebar);
@@ -66,10 +82,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function Definitions
   function handleDishClick(event, dishItemElement) {
     // Transfer necessary attributes for Order Detail Sidebar
-    populateOrderDetailSidebar(dishItemElement);
-    orderDetailSidebar.style.display = "contents";
-    cartSidebar.style.display = "none";
-    showToast("Dish selected. Check out the details!");
+
+    console.log(windowWidth);
+    if (windowWidth > 767.9) {
+      populateOrderDetailSidebar(dishItemElement);
+      orderDetailSidebar.style.display = "flex";
+      cartSidebar.style.display = "none";
+      showToast("Dish selected. Check out the details!");
+    } else {
+      populateOrderDetailSidebar(dishItemElement);
+      mainContainer.style.justifyContent = "center";
+      mainContentContainer.style.display = "none";
+      sidebars.style.display = "flex";
+      orderDetailSidebar.style.display = "flex";
+      orderDetailSidebar.style.flexDirection = "column";
+      cartSidebar.style.display = "none";
+      closeOrderDetailBtnInSmallScreen.style.display = "flex";
+      showToast("Dish selected. Check out the details!");
+    }
   }
 
   function populateOrderDetailSidebar(dishItemElement) {
@@ -115,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fetch relevant data attributes from the order sidebar
     const dishName = document.getElementById("orderDishName").textContent;
     const dishPrice = parseFloat(
-      document.getElementById("orderDishPrice").textContent.substr(1)
+      document.getElementById("orderDishPrice").textContent.substring(1)
     );
     const dishQuantity = parseInt(
       document.getElementById("orderQuantity").innerText

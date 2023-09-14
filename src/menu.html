@@ -57,8 +57,8 @@
         </nav>
       </header>
       <section id="menu">
-        <div class="main-container">
-          <div class="main-content-container">
+        <div id ="main-container" class="main-container">
+          <div id ="main-content-container"class="main-content-container">
             <h1>Menu</h1>
             <ul class="menu-tabs">
               <li class="active"><a href="#starters">Starters</a></li>
@@ -165,14 +165,17 @@
             </div>
           </div>
           <!-- Switching Sidebars -->
-          <div class="sidebars-container active">
+          <div id ="sidebars-container"class="sidebars-container active">
             <!-- Ordering Detail Sidebar -->
             <div id="orderDetailSidebar" class="order-detail-sidebar">
-              <!-- Close button -->
+              <!-- Close button to toggle to Cart -->
               <button id="closeOrderDetailBtn">Close</button>
+              <!-- Close button to close the order side bar -->
+              <button id="closeOrderDetailBtnInSmallScreen">Close</button>
 
               <!-- Dish image -->
               <picture
+              class="orderDetailPicture"
                 id="orderDetailPicture"
                 data-dish=""
                 data-price=""
@@ -202,6 +205,9 @@
 
             <!-- Cart side bar -->
             <div id="cartSidebar" class="cart-sidebar">
+              <div class="cartSidebarClose">
+                <button id="cartSidebarCloseBtn">Close</button>
+              </div>
               <!-- Container for cart items -->
               <div id="cartItemsContainer">
                 <!-- Dynamic cart items will be injected here -->

@@ -143,16 +143,14 @@
 }
 
 .order-detail-sidebar {
-  position: fixed;
+  position: sticky;
   height: 100%;
-  top: 76px;
-  right: -400px;
-  bottom: 0;
-  width: 400px;
+  width: 100%;
   background-color: #fff;
   box-shadow: -2px -2px 4px 0 rgb(0 0 0 / 10%);
   overflow-y: auto;
   transition: right 0.3s ease-in-out;
+  display: none;
   z-index: 1000; // To ensure it appears above all other elements
 
   // Close button style
@@ -285,31 +283,24 @@
     float: left;
     position: relative;
   }
-  .cart-sidebar,
-  .order-detail-sidebar {
-    width: 400px;
-    // additional styles
-  }
 }
 
 .sidebars-container {
   box-shadow: -2px -2px 4px 0 rgb(0 0 0 / 10%);
   height: 100%;
   padding-top: 12px;
-  position: fixed;
   right: 0;
   width: 31.805%;
   z-index: 2;
   padding-left: 19px;
   padding-right: 19px;
   position: fixed;
+  top: 60px;
 }
 
 #cartSidebar {
   z-index: 100; // A high z-index to appear above everything else
-  position: fixed;
-  right: 0;
-  top: 76px;
+  position: sticky;
   width: 400px;
   height: 100%;
   background-color: #111;

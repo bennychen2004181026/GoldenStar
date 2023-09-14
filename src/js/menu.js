@@ -35,13 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addToCartBtn.addEventListener("click", function () {
     handleAddToCart(orderDetailPicture);
-    cartSidebar.style.right = "0";
-    orderDetailSidebar.style.right = "-400px";
+    cartSidebar.style.display = "flex";
+    orderDetailSidebar.style.display = "none";
   });
 
   closeOrderDetailBtn.addEventListener("click", function () {
-    cartSidebar.style.right = "0";
-    orderDetailSidebar.style.right = "-400px";
+    cartSidebar.style.display = "flex";
+    orderDetailSidebar.style.display = "none";
   });
 
   // floatingCartBtn.addEventListener("click", toggleCartSidebar);
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleDishClick(event, dishItemElement) {
     // Transfer necessary attributes for Order Detail Sidebar
     populateOrderDetailSidebar(dishItemElement);
-    orderDetailSidebar.style.right = "0";
-    cartSidebar.style.right = "-400px";
+    orderDetailSidebar.style.display = "contents";
+    cartSidebar.style.display = "none";
     showToast("Dish selected. Check out the details!");
   }
 

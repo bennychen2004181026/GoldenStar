@@ -1,50 +1,102 @@
+.hero-section {
+  background-image: url("../assets/images/heroImage.webp");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    background: #ff6b6b;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+  }
+}
+
+#featured-dishes {
+  .section-heading {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .dishes-wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+  .dish-card {
+    width: 200px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
 #testimonials {
-    background-color: #f9f9f9;
-    padding: 2em 0;
-  
-    .testimonial-wrapper {
-      display: flex;
-      justify-content: space-between;
-  
-      .testimonial { /* updated class name */
-        width: 45%; /* Adjust as needed */
-        p {
-          font-size: 1.1em;
-        }
-        small {
-          display: block;
-          text-align: right;
-          margin-top: 10px;
-          font-style: italic;
-        }
+  background-color: #f9f9f9;
+  padding: 2em 0;
+
+  .testimonial-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .testimonial {
+      /* updated class name */
+      width: 45%; /* Adjust as needed */
+      p {
+        font-size: 1.1em;
+      }
+      small {
+        display: block;
+        text-align: right;
+        margin-top: 10px;
+        font-style: italic;
       }
     }
   }
-  #latest-blogs {
-    background-color: #fff;
-    padding: 2em 0;
-  
-    .blog-post-wrapper {
-      display: flex;
-      justify-content: space-between;
-  
-      .blog-post {
-        width: 45%; /* Adjust as needed */
-        img {
-          max-width: 100%;
-          height: auto;
-        }
-        h3 {
-          font-size: 1.4em;
-        }
-        p {
-          font-size: 1em;
-        }
-        .read-more {
-          text-decoration: none;
-          color: #007bff;
-        }
+}
+#latest-blogs {
+  background-color: #fff;
+  padding: 2em 0;
+
+  .blog-post-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .blog-post {
+      width: 45%; /* Adjust as needed */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      h3 {
+        font-size: 1.4em;
+      }
+      p {
+        font-size: 1em;
+      }
+      .read-more {
+        text-decoration: none;
+        color: #007bff;
       }
     }
   }
-  
+}

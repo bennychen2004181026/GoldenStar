@@ -23,242 +23,235 @@
   </head>
 
   <body>
-    <!-- Header -->
-    <header class="site-header">
-      <!-- Navigation Bar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Golden Star Yum Cha</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
-              </li>
-              <!-- ... other links ... -->
+    <!-- Content wraper -->
+    <div class="content-wraper">
+      <!-- Header -->
+      <header class="site-header">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Golden Star Yum Cha</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About Us</a>
+                </li>
+                <!-- ... other links ... -->
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <section id="menu">
+        <div class="main-container">
+          <div class="main-content-container">
+            <h1>Menu</h1>
+            <ul class="menu-tabs">
+              <li class="active"><a href="#starters">Starters</a></li>
+              <li><a href="#mains">Main Courses</a></li>
+              <li><a href="#desserts">Desserts</a></li>
+              <!-- More categories can be added here -->
+            </ul>
+
+            <div class="menu-content">
+              <div id="starters" class="tab-content active">
+                <div class="dish-gallery">
+                  <!-- Single dish item -->
+                  <div class="dish-item">
+                    <!-- Dish image -->
+                    <picture
+                      data-dish="seafood"
+                      data-price="19.99"
+                      data-quantity="0"
+                      data-thumbnail="./assets/thumbnail/seafood.webp"
+                      data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
+                      data-lazy="true"
+                    >
+                      <source
+                        srcset="./assets/images/seafood.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="./assets/images/seafood.jpg"
+                        alt="Seafood Delight"
+                        loading="lazy"
+                      />
+                    </picture>
+                    <div class="dishInfo">
+                      <div class="dishPrice text-capitalize">19.99</div>
+                      <div class="dishDescription">Food Description</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--  -->
+              <div id="mains" class="tab-content">
+                <div class="dish-gallery">
+                  <!-- Single dish item -->
+                  <div class="dish-item">
+                    <!-- Dish image -->
+                    <picture
+                      data-dish="seafood"
+                      data-price="19.99"
+                      data-quantity="0"
+                      data-thumbnail="./assets/thumbnail/seafood.webp"
+                      data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
+                      data-lazy="true"
+                    >
+                      <source
+                        srcset="./assets/images/seafood.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="./assets/images/seafood.jpg"
+                        alt="Seafood Delight"
+                        loading="lazy"
+                      />
+                    </picture>
+                    <div class="dishInfo">
+                      <div class="dishPrice text-capitalize">19.99</div>
+                      <div class="dishDescription">Food Description</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="desserts" class="tab-content">
+                <div class="dish-gallery">
+                  <!-- Single dish item -->
+                  <div class="dish-item">
+                    <!-- Dish image -->
+                    <picture
+                      data-dish="seafood"
+                      data-price="19.99"
+                      data-quantity="0"
+                      data-thumbnail="./assets/thumbnail/seafood.webp"
+                      data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
+                      data-lazy="true"
+                    >
+                      <source
+                        srcset="./assets/images/seafood.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="./assets/images/seafood.jpg"
+                        alt="Seafood Delight"
+                        loading="lazy"
+                      />
+                    </picture>
+                    <div class="dishInfo">
+                      <div class="dishPrice text-capitalize">19.99</div>
+                      <div class="dishDescription">Food Description</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- More categories can be added here -->
+            </div>
+          </div>
+          <!-- Switching Sidebars -->
+          <div class="sidebars-container active">
+            <!-- Ordering Detail Sidebar -->
+            <div id="orderDetailSidebar" class="order-detail-sidebar">
+              <!-- Close button -->
+              <button id="closeOrderDetailBtn">Close</button>
+
+              <!-- Dish image -->
+              <picture
+                id="orderDetailPicture"
+                data-dish=""
+                data-price=""
+                data-quantity=""
+                data-thumbnail=""
+                data-thumbnail-fallback=""
+                data-lazy=""
+              >
+                <source id="orderDetailSource" srcset="" type="image/webp" />
+                <img id="orderDetailImage" src="" alt="" loading="lazy" />
+              </picture>
+
+              <!-- Dish Information -->
+              <h2 id="orderDishName"></h2>
+              <p id="orderDishPrice"></p>
+
+              <!-- Quantity Controls -->
+              <div class="quantity-controls">
+                <button id="decrement" class="decrement">-</button>
+                <span id="orderQuantity">1</span>
+                <button id="increment" class="increment">+</button>
+              </div>
+
+              <!-- Add to Cart button -->
+              <button id="addToCart">Add to Cart</button>
+            </div>
+
+            <!-- Cart side bar -->
+            <div id="cartSidebar" class="cart-sidebar">
+              <!-- Container for cart items -->
+              <div id="cartItemsContainer">
+                <!-- Dynamic cart items will be injected here -->
+              </div>
+
+              <!-- Total Price Display -->
+              <div class="cart-total" id="cartTotalContainer">
+                <span id="cartTotal">Total: $0.00</span>
+              </div>
+
+              <!-- Cart Actions -->
+              <div id="cartActions" class="cart-actions">
+                <button id="clearCartBtn">Clear Cart</button>
+                <button id="proceedToCheckoutBtn">Proceed to Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Toast Notifications -->
+      <div id="toast" class="toast">
+        <p>Notification content here</p>
+      </div>
+
+      <div class="floating-cart-btn">
+        <span class="orderBubble"
+          >ORDER<i id="cartItemCount" class="itemCount">0</i></span
+        >
+      </div>
+
+      <!-- Footer Section -->
+      <footer id="footer">
+        <div class="container">
+          <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+          </div>
+          <div class="secondary-nav">
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact</a></li>
             </ul>
           </div>
+          <p>&copy; 2023 Yum Cha Restaurant. All Rights Reserved.</p>
         </div>
-      </nav>
-    </header>
-
-    <!-- Breadcrumb components -->
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">About Us</li>
-      </ol>
-    </nav>
-
-    <section id="menu">
-      <div class="main-container">
-        <div class="main-content-container">
-          <h1>Menu</h1>
-          <ul class="menu-tabs">
-            <li class="active"><a href="#starters">Starters</a></li>
-            <li><a href="#mains">Main Courses</a></li>
-            <li><a href="#desserts">Desserts</a></li>
-            <!-- More categories can be added here -->
-          </ul>
-
-          <div class="menu-content">
-            <div id="starters" class="tab-content active">
-              <div class="dish-gallery">
-                <!-- Single dish item -->
-                <div class="dish-item">
-                  <!-- Dish image -->
-                  <picture
-                    data-dish="seafood"
-                    data-price="19.99"
-                    data-quantity="0"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                    data-lazy="true"
-                  >
-                    <source
-                      srcset="./assets/images/seafood.webp"
-                      type="image/webp"
-                    />
-                    <img
-                      src="./assets/images/seafood.jpg"
-                      alt="Seafood Delight"
-                      loading="lazy"
-                    />
-                  </picture>
-                  <div class="dishInfo">
-                    <div class="dishPrice text-capitalize">19.99</div>
-                    <div class="dishDescription">Food Description</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!--  -->
-            <div id="mains" class="tab-content">
-              <div class="dish-gallery">
-                <!-- Single dish item -->
-                <div class="dish-item">
-                  <!-- Dish image -->
-                  <picture
-                    data-dish="seafood"
-                    data-price="19.99"
-                    data-quantity="0"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                    data-lazy="true"
-                  >
-                    <source
-                      srcset="./assets/images/seafood.webp"
-                      type="image/webp"
-                    />
-                    <img
-                      src="./assets/images/seafood.jpg"
-                      alt="Seafood Delight"
-                      loading="lazy"
-                    />
-                  </picture>
-                  <div class="dishInfo">
-                    <div class="dishPrice text-capitalize">19.99</div>
-                    <div class="dishDescription">Food Description</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="desserts" class="tab-content">
-              <div class="dish-gallery">
-                <!-- Single dish item -->
-                <div class="dish-item">
-                  <!-- Dish image -->
-                  <picture
-                    data-dish="seafood"
-                    data-price="19.99"
-                    data-quantity="0"
-                    data-thumbnail="./assets/thumbnail/seafood.webp"
-                    data-thumbnail-fallback="./assets/thumbnail/seafood.jpg"
-                    data-lazy="true"
-                  >
-                    <source
-                      srcset="./assets/images/seafood.webp"
-                      type="image/webp"
-                    />
-                    <img
-                      src="./assets/images/seafood.jpg"
-                      alt="Seafood Delight"
-                      loading="lazy"
-                    />
-                  </picture>
-                  <div class="dishInfo">
-                    <div class="dishPrice text-capitalize">19.99</div>
-                    <div class="dishDescription">Food Description</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- More categories can be added here -->
-          </div>
-        </div>
-        <!-- Switching Sidebars -->
-        <div class="sidebars-container active">
-          <!-- Ordering Detail Sidebar -->
-          <div id="orderDetailSidebar" class="order-detail-sidebar">
-            <!-- Close button -->
-            <button id="closeOrderDetailBtn">Close</button>
-
-            <!-- Dish image -->
-            <picture
-              id="orderDetailPicture"
-              data-dish=""
-              data-price=""
-              data-quantity=""
-              data-thumbnail=""
-              data-thumbnail-fallback=""
-              data-lazy=""
-            >
-              <source id="orderDetailSource" srcset="" type="image/webp" />
-              <img id="orderDetailImage" src="" alt="" loading="lazy" />
-            </picture>
-
-            <!-- Dish Information -->
-            <h2 id="orderDishName"></h2>
-            <p id="orderDishPrice"></p>
-
-            <!-- Quantity Controls -->
-            <div class="quantity-controls">
-              <button id="decrement" class="decrement">-</button>
-              <span id="orderQuantity">1</span>
-              <button id="increment" class="increment">+</button>
-            </div>
-
-            <!-- Add to Cart button -->
-            <button id="addToCart">Add to Cart</button>
-          </div>
-
-          <!-- Cart side bar -->
-          <div id="cartSidebar" class="cart-sidebar">
-            <!-- Container for cart items -->
-            <div id="cartItemsContainer">
-              <!-- Dynamic cart items will be injected here -->
-            </div>
-
-            <!-- Total Price Display -->
-            <div class="cart-total" id="cartTotalContainer">
-              <span id="cartTotal">Total: $0.00</span>
-            </div>
-
-            <!-- Cart Actions -->
-            <div id="cartActions" class="cart-actions">
-              <button id="clearCartBtn">Clear Cart</button>
-              <button id="proceedToCheckoutBtn">Proceed to Checkout</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Toast Notifications -->
-    <div id="toast" class="toast">
-      <p>Notification content here</p>
+      </footer>
     </div>
-
-    <div class="floating-cart-btn">
-      <span class="orderBubble"
-        >ORDER<i id="cartItemCount" class="itemCount">0</i></span
-      >
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="footer">
-      <div class="container">
-        <div class="social-icons">
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-twitter"></i></a>
-        </div>
-        <div class="secondary-nav">
-          <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <p>&copy; 2023 Yum Cha Restaurant. All Rights Reserved.</p>
-      </div>
-    </footer>
-
     <script src="./js/main.js" defer></script>
     <script src="./js/menu.js" defer></script>
   </body>

@@ -26,6 +26,18 @@ body {
   padding: 0;
 }
 
+// body content wraper
+.content-wraper{
+display: block;
+height: 100%;
+}
+
+// Header
+.site-header{
+position: fixed;
+z-index: 200;
+width: 100%;
+}
 // Headings
 h1,
 h2,

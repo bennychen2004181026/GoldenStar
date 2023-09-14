@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize cart array and UI
   let cart = [];
-  handleFloatingCartButton();
+  // handleFloatingCartButton();
 
   // Event Listeners
   tabs.forEach((tab, tabIndex) => {
@@ -210,13 +210,13 @@ document.addEventListener("DOMContentLoaded", function () {
       showToast("Cart cleared!");
     });
 
-  function handleFloatingCartButton() {
-    if (window.innerWidth <= 768) {
-      floatingCartBtn.style.display = "block";
-    } else {
-      floatingCartBtn.style.display = "none";
-    }
-  }
+  // function handleFloatingCartButton() {
+  //   if (window.innerWidth <= 768) {
+  //     floatingCartBtn.style.display = "block";
+  //   } else {
+  //     floatingCartBtn.style.display = "none";
+  //   }
+  // }
 
   // Function to show toast
   function showToast(message) {

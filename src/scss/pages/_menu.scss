@@ -1,8 +1,10 @@
 #menu {
   background-color: #ffffff;
   padding: 0.2em 0;
-  position: relative; // Adding relative position so z-index takes effect
-
+  position: relative;
+  overflow-y: auto;
+  height: 100%;
+  display: block;
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1em;
@@ -143,12 +145,12 @@
 .order-detail-sidebar {
   position: fixed;
   height: 100%;
-  top: 0;
+  top: 128px;
   right: -400px;
   bottom: 0;
   width: 400px;
   background-color: #fff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: -2px -2px 4px 0 rgb(0 0 0 / 10%);
   overflow-y: auto;
   transition: right 0.3s ease-in-out;
   z-index: 1000; // To ensure it appears above all other elements
@@ -217,47 +219,12 @@
   }
 }
 
-.cart-sidebar {
-  z-index: 100; // A high z-index to appear above everything else
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 400px;
-  height: 100%;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  color: white;
-
-  h2 {
-    padding: 20px;
-    background-color: #333;
-    margin: 0;
-  }
-
-  .close-cart {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-  }
-
-  .cart-items {
-    padding: 20px;
-  }
-
-  .cart-total {
-    padding: 20px;
-    border-top: 1px solid #444;
-  }
-}
 // Toast Styles
 .toast {
   position: fixed;
   width: 20%;
   height: 6%;
-  top:10%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
@@ -272,60 +239,125 @@
 }
 //Floating Cart Button
 .floating-cart-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  // other styles here
-  display: none; // will be set to 'block' via JavaScript based on screen size
-
+  top: 80%;
+  left: calc(50% - 56px);
+  position: absolute;
+  text-align: center;
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+  display: block; // will be set to 'block' via JavaScript based on screen size
+  .orderBubble {
+    background-color: bisque;
+    border: 1px solid #ebebeb;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roboto, serif;
+    font-size: 1.4em;
+    font-weight: 500;
+    padding: 10px 20px 9px;
+    position: relative;
+    top: -1px;
+    .itemCount {
+      background-color: rgb(128, 0, 0);
+      border-radius: 24px;
+      color: #fff;
+      display: inline-block;
+      font-style: normal;
+      height: 30px;
+      margin-left: 8px;
+      text-align: center;
+      width: 25px;
+    }
+  }
   #cartItemCount {
     // style for the cart item count number
   }
 }
 
 .main-container {
-  display: flex;
-
+  display: block;
+  width: 100%;
+  height: 100%;
+  .main-content-container {
+    width: calc(100% - 419px);
+    float: left;
+    position: relative;
+  }
   .cart-sidebar,
   .order-detail-sidebar {
-    width: 300px;
+    width: 400px;
     // additional styles
   }
 }
 
+.sidebars-container {
+  box-shadow: -2px -2px 4px 0 rgb(0 0 0 / 10%);
+  height: 100%;
+  padding-top: 12px;
+  position: fixed;
+  right: 0;
+  width: 31.805%;
+  z-index: 2;
+  padding-left: 19px;
+  padding-right: 19px;
+  position: fixed;
+}
+
 #cartSidebar {
+  z-index: 100; // A high z-index to appear above everything else
+  position: fixed;
+  right: 0;
+  top: 128px;
+  width: 400px;
+  height: 100%;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  .close-cart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .cartItemsContainer {
+  }
   .cart-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #ccc;
-  
+    padding: 20px;
     img {
       width: 50px;
       height: 50px;
       object-fit: cover;
     }
-  
+
     span {
       font-size: 14px;
     }
   }
-  
+
   .cart-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-  
+
     button {
       padding: 10px 20px;
       background-color: #007bff;
       color: white;
       border: none;
       cursor: pointer;
-  
+
       &:hover {
         background-color: #0056b3;
       }
@@ -337,8 +369,8 @@
     justify-content: flex-end;
     padding: 10px;
     font-size: 18px;
+    border-top: 1px solid #444;
   }
-  
 
   .cart-actions {
     display: flex;

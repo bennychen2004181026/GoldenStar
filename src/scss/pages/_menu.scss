@@ -45,7 +45,7 @@
 
   .dish-gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 
     img {
@@ -301,7 +301,7 @@
   position: sticky;
   width: 400px;
   height: 100%;
-  background-color: #111;
+  background-color: #c2d4e3;
   overflow-x: hidden;
   transition: 0.5s;
   color: white;
@@ -368,17 +368,38 @@
   }
 }
 
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column;
+// @media (max-width: 768px) {
+//   .main-container {
+//     flex-direction: column;
 
-    .cart-sidebar,
-    .order-detail-sidebar {
-      width: 100%;
+//     .cart-sidebar,
+//     .order-detail-sidebar {
+//       width: 100%;
+//     }
+//   }
+// }
+@media (min-width: 768px) and (max-width: 1023.9px) {
+ 
+  .main-container{
+    justify-content: space-between;
+    .main-content-container{
+      width: calc(100% - 360px);
+      .dish-gallery {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+    .sidebars-container {
+      max-width: 360px;
+      .order-detail-sidebar{
+        max-width: 360px;
+      }
+      .cart-sidebar {
+        max-width: 360px;
+      }
     }
   }
+  
 }
-
 @media (min-width: 1024px) {
   body > div.content-wraper,
   body > div > header {

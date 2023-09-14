@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     populateOrderDetailSidebar(dishItemElement);
     orderDetailSidebar.style.right = "0";
     cartSidebar.style.right = "-400px";
+    showToast("Dish selected. Check out the details!");
   }
 
   function populateOrderDetailSidebar(dishItemElement) {
@@ -119,15 +120,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const dishQuantity = parseInt(
       document.getElementById("orderQuantity").innerText
     );
-  
+
     // The image information can be fetched directly from orderDetailPicture and orderDetailImage.
     const dishThumbnail = orderDetailPicture.dataset.thumbnail;
     const dishThumbnailFallback = orderDetailPicture.dataset.thumbnailFallback;
     const dishLazy = orderDetailImage.getAttribute("loading");
-  
+
     // Check if dish already exists in the cart
     const existingDish = cart.find((item) => item.dish === dishName);
-  
+
     if (existingDish) {
       // Add the new quantity to the existing dish in the cart
       existingDish.quantity += dishQuantity; // Changed this line to add to the existing quantity
@@ -142,70 +143,71 @@ document.addEventListener("DOMContentLoaded", function () {
         lazy: dishLazy,
       });
     }
-  
+    // Show toast notification
+    showToast("Dish added to cart!");
     // Update the cart UI
     updateCartUI();
   }
-  
 
   // Function to update the cart UI
-  // Update the cart UI
-function updateCartUI() {
-  const cartItemsContainer = document.getElementById("cartItemsContainer");
-  const cartTotal = document.getElementById("cartTotal");
+  function updateCartUI() {
+    const cartItemsContainer = document.getElementById("cartItemsContainer");
+    const cartTotal = document.getElementById("cartTotal");
 
-  // Clear existing items
-  cartItemsContainer.innerHTML = "";
+    // Clear existing items
+    cartItemsContainer.innerHTML = "";
 
-  let totalPrice = 0;
+    let totalPrice = 0;
 
-  cart.forEach((item) => {
-    // Calculate total price
-    totalPrice += item.price * item.quantity;
+    cart.forEach((item) => {
+      // Calculate total price
+      totalPrice += item.price * item.quantity;
 
-    // Create cart item
-    const cartItem = document.createElement("div");
-    cartItem.classList.add("cart-item");  // Add class for styling
+      // Create cart item
+      const cartItem = document.createElement("div");
+      cartItem.classList.add("cart-item"); // Add class for styling
 
-    // Create image with fallback
-    const image = document.createElement("img");
-    image.src = item.thumbnail;
-    image.setAttribute("loading", item.lazy);
-    image.onerror = () => {
-      image.src = item.thumbnailFallback;
-    };
+      // Create image with fallback
+      const image = document.createElement("img");
+      image.src = item.thumbnail;
+      image.setAttribute("loading", item.lazy);
+      image.onerror = () => {
+        image.src = item.thumbnailFallback;
+      };
 
-    // Create dish name element
-    const dishName = document.createElement("span");
-    dishName.textContent = item.dish;
+      // Create dish name element
+      const dishName = document.createElement("span");
+      dishName.textContent = item.dish;
 
-    // Create dish price element
-    const dishPrice = document.createElement("span");
-    dishPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+      // Create dish price element
+      const dishPrice = document.createElement("span");
+      dishPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
 
-    // Create dish quantity element
-    const dishQuantity = document.createElement("span");
-    dishQuantity.textContent = `X ${item.quantity}`;
+      // Create dish quantity element
+      const dishQuantity = document.createElement("span");
+      dishQuantity.textContent = `X ${item.quantity}`;
 
-    // Append elements to cart item
-    cartItem.appendChild(image);
-    cartItem.appendChild(dishName);
-    cartItem.appendChild(dishPrice);
-    cartItem.appendChild(dishQuantity);
+      // Append elements to cart item
+      cartItem.appendChild(image);
+      cartItem.appendChild(dishName);
+      cartItem.appendChild(dishPrice);
+      cartItem.appendChild(dishQuantity);
 
-    // Append cart item to cart items container
-    cartItemsContainer.appendChild(cartItem);
-  });
+      // Append cart item to cart items container
+      cartItemsContainer.appendChild(cartItem);
+    });
 
-  // Update the total price
-  cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
-}
+    // Update the total price
+    cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
+  }
 
   document
     .getElementById("clearCartBtn")
     .addEventListener("click", function () {
       cart.length = 0; // Clear the cart array
       updateCartUI(); // Update the UI
+      // Show toast notification
+      showToast("Cart cleared!");
     });
 
   function handleFloatingCartButton() {
@@ -215,4 +217,18 @@ function updateCartUI() {
       floatingCartBtn.style.display = "none";
     }
   }
+
+  // Function to show toast
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.querySelector("p").textContent = message;
+    toast.classList.add("toast-visible"); // Add class to make it visible
+
+    setTimeout(() => {
+      toast.classList.remove("toast-visible");
+    }, 600);
+  }
+
+  // Initialize cart UI
+  updateCartUI();
 });

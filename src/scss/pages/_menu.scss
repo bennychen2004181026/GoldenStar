@@ -255,7 +255,9 @@
 // Toast Styles
 .toast {
   position: fixed;
-  bottom: 20px;
+  width: 20%;
+  height: 6%;
+  top:10%;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
@@ -330,11 +332,13 @@
     }
   }
 
-  #cartTotal {
+  .cart-total {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
     font-size: 18px;
-    font-weight: bold;
-    margin-top: 16px;
   }
+  
 
   .cart-actions {
     display: flex;

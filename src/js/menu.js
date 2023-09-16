@@ -188,15 +188,21 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateCartUI() {
     const cartItemsContainer = document.getElementById("cartItemsContainer");
     const cartTotal = document.getElementById("cartTotal");
-
+    console.log(cartTotal)
+    const cartTotalItems = document.getElementById("cartTotalItems");
+    console.log(cartTotalItems)
     // Clear existing items
     cartItemsContainer.innerHTML = "";
 
+    let totalItems = 0;
     let totalPrice = 0;
 
     cart.forEach((item) => {
       // Calculate total price
       totalPrice += item.price * item.quantity;
+    
+      // Calculate total price
+      totalItems += item.quantity;
 
       // Create cart item
       const cartItem = document.createElement("div");
@@ -234,6 +240,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update the total price
     cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
+
+    // Update the total items
+    cartTotalItems.textContent = `Total: ${Math.floor(totalItems)}`;
   }
 
   document

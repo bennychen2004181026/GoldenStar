@@ -363,7 +363,7 @@
     }
   }
 
-  .cart-total {
+  .cart-total-items {
     display: flex;
     justify-content: flex-end;
     padding: 10px;
@@ -371,10 +371,11 @@
     border-top: 1px solid #444;
   }
 
-  .cart-actions {
+  .cart-total {
     display: flex;
-    justify-content: space-between;
-    padding: 1em;
+    justify-content: flex-end;
+    padding: 10px;
+    font-size: 18px;
   }
 }
 

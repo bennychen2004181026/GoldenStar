@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainContentContainer = document.getElementById(
     "main-content-container"
   );
-  console.log(mainContainer);
+  console.log(floatingCartBtn);
 
   // Initialize cart array and UI
   let cart = [];
@@ -63,10 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
   cartSidebarCloseBtn.addEventListener("click", function () {
     sidebars.style.display = "none";
     mainContentContainer.style.display = "flex";
+    floatingCartBtn.style.display = "block";
   });
 
-  // floatingCartBtn.addEventListener("click", toggleCartSidebar);
-  // window.addEventListener("resize", handleFloatingCartButton);
 
   // Logic for decrementing and increment the order quantity
   decrementBtn.addEventListener("click", function () {
@@ -84,15 +83,34 @@ document.addEventListener("DOMContentLoaded", function () {
     orderQuantitySpan.innerText = quantity;
   });
 
+  floatingCartBtn.addEventListener("click", function () {
+    // mainContainer.style.justifyContent = "center";
+      mainContentContainer.style.display = "none";
+      sidebars.style.display = "flex";
+      orderDetailSidebar.style.display = "none";
+      cartSidebar.style.display = "flex";
+      closeOrderDetailBtnInSmallScreen.style.display = "flex";
+      floatingCartBtn.style.display = "none";
+  });
+
+  document
+  .getElementById("clearCartBtn")
+  .addEventListener("click", function () {
+    cart.length = 0; // Clear the cart array
+    updateCartUI(); // Update the UI
+    // Show toast notification
+    showToast("Cart cleared!");
+  });
+
   // Function Definitions
   function handleDishClick(event, dishItemElement) {
     // Transfer necessary attributes for Order Detail Sidebar
 
-    console.log(windowWidth);
     if (windowWidth > 767.9) {
       populateOrderDetailSidebar(dishItemElement);
       orderDetailSidebar.style.display = "flex";
       cartSidebar.style.display = "none";
+      floatingCartBtn.style.display = "none";
       showToast("Dish selected. Check out the details!");
     } else {
       populateOrderDetailSidebar(dishItemElement);
@@ -103,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
       orderDetailSidebar.style.flexDirection = "column";
       cartSidebar.style.display = "none";
       closeOrderDetailBtnInSmallScreen.style.display = "flex";
+      floatingCartBtn.style.display = "none";
       showToast("Dish selected. Check out the details!");
     }
   }
@@ -188,9 +207,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateCartUI() {
     const cartItemsContainer = document.getElementById("cartItemsContainer");
     const cartTotal = document.getElementById("cartTotal");
-    console.log(cartTotal)
     const cartTotalItems = document.getElementById("cartTotalItems");
-    console.log(cartTotalItems)
+    const cartItemCount = document.getElementById("cartItemCount");
+
+
     // Clear existing items
     cartItemsContainer.innerHTML = "";
 
@@ -243,24 +263,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update the total items
     cartTotalItems.textContent = `Total: ${Math.floor(totalItems)}`;
+
+    // Update the total items in floating cart botton
+    cartItemCount.textContent = Math.floor(totalItems);
   }
-
-  document
-    .getElementById("clearCartBtn")
-    .addEventListener("click", function () {
-      cart.length = 0; // Clear the cart array
-      updateCartUI(); // Update the UI
-      // Show toast notification
-      showToast("Cart cleared!");
-    });
-
-  // function handleFloatingCartButton() {
-  //   if (window.innerWidth <= 768) {
-  //     floatingCartBtn.style.display = "block";
-  //   } else {
-  //     floatingCartBtn.style.display = "none";
-  //   }
-  // }
 
   // Function to show toast
   function showToast(message) {

@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const addToCartBtn = document.getElementById("addToCart");
   const closeOrderDetailBtn = document.getElementById("closeOrderDetailBtn");
   const mainContainer = document.getElementById("main-container");
+  const cartSidebarCloseBtn = document.getElementById("cartSidebarCloseBtn");
   const closeOrderDetailBtnInSmallScreen = document.getElementById(
     "closeOrderDetailBtnInSmallScreen"
   );
@@ -56,6 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
     orderDetailSidebar.style.display = "none";
   });
   closeOrderDetailBtnInSmallScreen.addEventListener("click", function () {
+    sidebars.style.display = "none";
+    mainContentContainer.style.display = "flex";
+  });
+  cartSidebarCloseBtn.addEventListener("click", function () {
     sidebars.style.display = "none";
     mainContentContainer.style.display = "flex";
   });

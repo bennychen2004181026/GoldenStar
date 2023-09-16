@@ -173,6 +173,8 @@
 
   // Dish image style
   picture {
+    display: flex;
+    justify-content: center;
     width: 100%;
     img {
       max-width: 100%;
@@ -249,6 +251,7 @@
 }
 //Floating Cart Button
 .floating-cart-btn {
+  z-index: 101;
   top: 80%;
   left: calc(50% - 56px);
   position: absolute;
@@ -379,18 +382,8 @@
   }
 }
 
-// @media (max-width: 768px) {
-//   .main-container {
-//     flex-direction: column;
 
-//     .cart-sidebar,
-//     .order-detail-sidebar {
-//       width: 100%;
-//     }
-//   }
-// }
-
-@media (max-width: 767.9px) {
+@media (max-width: 525.9px) {
   .sidebars-container {
     display: none;
   }
@@ -400,6 +393,39 @@
     .main-content-container {
       width: 100%;
       flex-direction: column;
+      .dish-gallery {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
+  #sidebars-container {
+    width: 100%;
+  }
+  #cartSidebar {
+    width: 100%;
+  }
+  #orderDetailSidebar {
+    align-items: center;
+  }
+  #closeOrderDetailBtn {
+    display: none;
+  }
+}
+
+
+@media (min-width: 526px) and (max-width: 767.9px) {
+  .sidebars-container {
+    display: none;
+  }
+
+  .main-container {
+    display: flex;
+    .main-content-container {
+      width: 100%;
+      flex-direction: column;
+      .dish-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   }
   #sidebars-container {
